@@ -1,9 +1,69 @@
+# R Environment Variables
 .Renviron
+
+# Quarto stuff
 /.quarto/
 /_site/
-.Rproj.user
-.Rhistory
+
+# RStudio files
+.Rproj.user/
+
+
 .Rdata
+
+# OAuth2 token, see https://github.com/hadley/httr/releases/tag/v0.3
 .httr-oauth
+
 .DS_Store
 .quarto
+
+# User-specific files
+.Ruserdata
+
+# History files
+.Rapp.history
+.Rhistory
+
+# Session Data files
+.RData
+.RDataTmp
+
+# User-specific files
+.Ruserdata
+
+# Libby's scrap file :)
+scrap.R
+
+#*******
+
+# knitr and R markdown default cache directories
+*_cache/
+/cache/
+
+# Temporary files created by R markdown
+*.utf8.md
+*.knit.md
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# knitr and R markdown default cache directories
+*_cache/
+/cache/
+
+# Temporary files created by R markdown
+*.utf8.md
+*.knit.md
+
+

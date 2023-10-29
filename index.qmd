@@ -1,30 +1,26 @@
 ---
-pagetitle: "Jadey Ryan | About"
-title: "Jadey Ryan"
-subtitle: "🐱 cat-obsessed environmental data scientist 🌱"
-image: assets/img/headshot.jpg
-image-alt: "Jadey Ryan headshot"
+pagetitle: "Libby Heeren | Data Humans" # What shows up in google search results
+title: "Libby Heeren" # Right under the round photo
+subtitle: "statistics-flavored data human" # smaller, under title
+image: assets/img/headshot.png
+image-alt: "Libby is a white woman with wavy brown hair wearing pink glasses and smiling"
 about:
   id: hero-heading
   template: jolla
   image-width: 10em
   links:
-    - icon: github
-      text: GitHub
-      aria-label: GitHub
-      href: https://github.com/jadeynryan
     - icon: linkedin
       text: LinkedIn
       aria-label: LinkedIn
-      href: https://www.linkedin.com/in/jadeynryan/
-    - icon: mastodon
-      text: Mastodon
-      aria-label: Mastodon
-      href: https://fosstodon.org/@jadeynryan
-    - icon: briefcase-fill
-      text: Work
-      aria-label: WSDA Website
-      href: https://agr.wa.gov/AgScience
+      href: https://www.linkedin.com/in/libbyheeren/
+    - icon: github
+      text: GitHub
+      aria-label: GitHub
+      href: https://github.com/LibbyHeeren
+    - icon: mic-fill
+      text: Podcast
+      aria-label: Data Humans website
+      href: https://www.datahumans.club/episodes
 toc: false
 anchor-sections: false
 execute: 
@@ -34,18 +30,24 @@ execute:
 ::: {#hero-heading}
 :::
 
-## Hi there! ![](assets/img/JR-logo.svg){.img-va-bottom fig-alt="cat with tail shaped as the letter J next to last name initial R" width="100"}
+## Hello, Data Humans!
 
-Thanks for visiting my website -- I'm happy you're here!
+I'm on a mission to speak candidly about the day-to-day work of data professionals. I love applied statistics, machine learning, and useful visualizations. I'm also an R educator and data community builder who wants you to know you belong in the R community. I'm so glad you're here!
 
-I'm the data scientist for the [Natural Resources and Agricultural Sciences](https://agr.wa.gov/agscience) section within the Washington State Department of Agriculture. I've had a long academic journey through the world of nature, with degrees in Biology (BS), Environmental Studies (BA), and Land Resources & Environmental Sciences (MS).
+In my free time, you can find me hanging out with my husband and our cats, or doing one of the following:
 
-My guiding principles in life are **kindness**, **authenticity**, **sustainability**, and **inclusivity**. I finally feel like I've found my happy place in life working in the environmental data science space and connecting with so many amazing folks in the R and open-source community.
+-   reading non-fiction, fantasy, mystery, and sci-fi ([have you seen my DS Hangout recommendations?!](https://www.notion.so/datahumans/2f4552fd18be4d439b6b6977077e6ca5?v=738d0654fd81490890b8f741a2ef0a3c))
 
-I designed [cat & code themed t-shirts](https://www.linkedin.com/posts/jadeynryan_rstats-positconf2023-activity-7108591736444112896-o1SR) as conversation starters for `posit::conf(2023)`. The positive feedback led me to start a small business: **the coding cats**. I'm excited to channel my creativity and love for cats, programming, and data science into designs for clothing, mugs, and tote bags. Keep an eye out for my [Etsy shop](shop.qmd).
+-   sewing, knitting, crocheting, and embroidering
 
-When it comes to work, I love improving the efficiency and reproducibility of our workflows. I'm also in my element when developing decision-support tools with `Quarto` and `Shiny`. In my downtime, I'm happiest hanging out with my husband and our three snowshoe Siamese cats. We love exploring new food spots and the great outdoors.
+-   playing video games
 
-Thanks for being a part of my journey. I'm by no means an expert at anything, but I plan on using this space to learn out loud!
+-   being a Notion power-user 😍
 
-![From left to right: Tai, Mai, and Skye](assets/img/mts.jpeg){fig-alt="Three snowshoe siamese cats in loaf mode" fig-align="center" width="100%" height="auto"}
+-   attending data community events ([I recommend the DSH](https://posit.co/data-science-hangout/))
+
+-   illustrating, painting, and taking photographs
+
+-   watching something delightfully nerdy
+
+-   Tea. Black. Hot... with oat milk 😋

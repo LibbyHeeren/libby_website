@@ -3,7 +3,7 @@ title: "Hey there!"
 format: gfm
 ---
 
-Welcome to the repo of my personal website, [libbyheeren.com](https://libbyheeren.com/), which was created with [Quarto](https://quarto.org/) and deployed via CI/CD with GitHub and [Netlify](https://www.netlify.com/).
+Welcome to the repo for my personal website, [libbyheeren.com](https://libbyheeren.com/), which was created with [Quarto](https://quarto.org/) and deployed via CI/CD with GitHub and [Netlify](https://www.netlify.com/).
 
 My website is a fork of Jadey Ryan's amazing website! I hope you'll go visit [Jadey's website repo](https://github.com/jadeynryan/jadey_website) and read her blog post on deploying with Netlify (and CI/CD!). You can also draw inspiration from all of the amazing projects on https://quarto.club/
 

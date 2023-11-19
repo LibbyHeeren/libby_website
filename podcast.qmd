@@ -1,8 +1,6 @@
 ---
 title: "Data Humans Podcast"
-knitr: 
-  opts_chunk:
-    fig.align: center
+fig-align: center
 ---
 
 

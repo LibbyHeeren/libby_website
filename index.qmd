@@ -5,7 +5,7 @@ subtitle: "statistics-flavored data human" # smaller, under title
 image: assets/img/headshot-tall.png
 image-alt: "Libby is a white woman with wavy brown and grey hair and brown eyes. She's wearing a grey nasa shirt and pink glasses, and she's smiling warmly. A shelf behind her is full of colorful items."
 about:
-  # id: hero-heading
+  id: hero-heading
   template: trestles
   image-width: 15em
   image-shape: rounded
@@ -28,10 +28,16 @@ execute:
   freeze: true
 ---
 
+::: {#hero-heading}
+
 *Hello, data humans!* I'm a data scientist, an R educator, and a data community builder who wants you to know **you belong in the data community**. I'm so glad you're here! I love applied statistics, machine learning, and useful data visualizations, but I love good people more than anything.  
 
 In my free time, you can find me hanging out with my husband and our cats, reading, sewing, playing video games, painting with watercolors, watching nerdy things, or drinking tea.  
 
-Looking for a data community where you can make cool data friends? If you don't already attend, I highly recommend checking out [the Posit Data Science Hangout](https://posit.co/data-science-hangout/) and I hope I see you there 🥰   
+Looking for a community where you can make cool data friends? If you don't already attend, I highly recommend checking out [the Posit Data Science Hangout](https://posit.co/data-science-hangout/) and I hope I see you there 🥰   
 
 Oh, and have you seen [my Data Science Hangout book recommendations](https://www.notion.so/datahumans/2f4552fd18be4d439b6b6977077e6ca5?v=738d0654fd81490890b8f741a2ef0a3c)? It's where you can find reading recs from Data Science Hangout leaders. I cannot recommend [the book Subtract by Leidy Klotz](https://www.leidyklotz.com/) enough.  
+
+:::
+
+

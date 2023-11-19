@@ -1,9 +1,16 @@
-### Hi there!   <img src="assets/img/JR-logo-white-bg.png" alt="Logo for Jadey Ryan&apos;s personal website: a cat with tail shaped as the letter J next to last name initial R" height="85"/>  [![](https://api.netlify.com/api/v1/badges/b58c2e5b-cf60-4b13-aa25-743b13f3cbf7/deploy-status)](https://app.netlify.com/sites/jadeynryan/deploys)
+# Hey there!
 
-Welcome to the repo of my personal website, which was created with [Quarto](https://quarto.org/) and deployed with [Netlify](https://www.netlify.com/).
+Welcome to the repo of my personal website,
+[libbyheeren.com](https://libbyheeren.com/), which was created with
+[Quarto](https://quarto.org/) and deployed with
+[Netlify](https://www.netlify.com/).
 
-I hope my website inspires you and this source code helps you create your own dream site.
+My website is a fork of Jadey Ryan’s amazing website! I hope you’ll go
+visit [Jadey’s website
+repo](https://github.com/jadeynryan/jadey_website) and also draw
+inspiration from all of the amazing projects on https://quarto.club/
 
-Please feel free to fork this repository or use code snippets, but please respect the [CC BY-NC-SA license](https://creativecommons.org/licenses/by-nc-sa/4.0/), meaning you can adapt the code with appropriate credit.
-
-As [Silvia Canelón](https://silviacanelon.com/) says, **happy repo-diving!**
+Please feel free to fork this repository or use code snippets, but
+please respect the [CC BY-NC-SA
+license](https://creativecommons.org/licenses/by-nc-sa/4.0/), meaning
+you can adapt the code with appropriate credit.

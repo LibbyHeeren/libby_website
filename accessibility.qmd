@@ -8,13 +8,13 @@ This accessibility commitment was adapted from [Silvia Canelón's excellent blog
 
 ## Feedback
 
-I welcome any feedback on the accessibility and inclusivity of my site and content. Please let me know if you encounter any accessibility barriers or areas for improvement and I'll do my best to remedy them.
+I welcome any feedback on the accessibility and inclusiveness of my site and content. Please let me know if you encounter any accessibility barriers or areas for improvement and I'll do my best to remedy them.
 
 ## Accessibility practices
 
 This site has been designed with the following features in mind:
 
-- A color palette that meets [WCAG 2.1 AA](https://www.w3.org/WAI/WCAG21/quickref/) standards for contrast.
+- A color palette that strives to provide adequate contrast. As a person with reduced contrast sensitivity vision, I understand the challenges low contrast can present.
 - Alternative text for all informative images.
 - Readable font faces, specifically to avoid impostor letter shapes and mirroring.
   - Each character in [iIl], [ceo], and [db qp] should all be distinct from one another.[^1] 
@@ -27,6 +27,6 @@ This site has been designed with the following features in mind:
 
 -   [Colour Contrast Checker](https://colourcontrast.cc/)
 -   [Viz Palette](https://projects.susielu.com/viz-palette)
-- [WAVE Web Accessibility Evaluation Tool](https://wave.webaim.org/)
+-   [WAVE Web Accessibility Evaluation Tool](https://wave.webaim.org/)
 -   [Microsoft Edge Accessibility Guide](https://learn.microsoft.com/en-us/microsoft-edge/devtools-guide-chromium/accessibility/test-inspect-tool)
 -   [Google Chrome Accessibility Features Reference](https://developer.chrome.com/docs/devtools/accessibility/reference/)

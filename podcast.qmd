@@ -1,0 +1,28 @@
+---
+title: "Data Humans Podcast"
+knitr: 
+  opts_chunk:
+    fig.align: center
+---
+
+
+*A podcast about data jobs and the humans who do them.*
+
+
+::: {layout-ncol=3}
+[![](assets/img/listen-on-apple-podcasts.png)](https://podcasts.apple.com/us/podcast/data-humans/id1652989136)
+
+[![](assets/img/listen-on-spotify.png)](https://open.spotify.com/show/6hxbEBZHCVQ409bB5m1KOC?si=cc1afc7b4ada4e7b&nd=1)
+
+[![](assets/img/listen-on-google-podcasts.png)](https://podcasts.google.com/feed/aHR0cHM6Ly9mZWVkcy5saWJzeW4uY29tLzQyMTI2OC9yc3M)
+:::
+
+
+Data science is not one thing. The methods and models that get the most airtime rarely represent the reality of day-to-day data work for the majority of people, and that can lead to the average data human feeling pretty inadequate by comparison.  
+
+I found myself wanting to talk candidly with other data professionals and students so that I could develop a healthier, more realistic perspective of my own journey. And once I did that, I thought… why not share that with the world? 
+
+Turns out, we all have a lot of struggles, fears, aspirations, and questions in common, we just don’t put it out in the world because that feels vulnerable. So, let’s share our stories.  
+
+
+**Links to individual episodes and show notes will be here soon. Thanks for your patience as I migrate my site from Squarespace to Quarto!** 

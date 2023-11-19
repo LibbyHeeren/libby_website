@@ -9,41 +9,41 @@
 // with base color #0b7366
 
 $white:  #fff;
-$gray-0: #f9f9f9;
-$gray-1: #eceeee;
-$gray-2: #dfe1e1;
-$gray-3: #d0d4d3;
-$gray-4: #c0c5c4;
-$gray-5: #aeb4b3;
-$gray-6: #99a1a0;
-$gray-7: #818b8a;
-$gray-8: #626f6d;
-$gray-9: #334240;
+$gray-0: #f9f9fa;
+$gray-1: #eeedee;
+$gray-2: #e1e0e2;
+$gray-3: #d3d2d5;
+$gray-4: #c5c3c6;
+$gray-5: #b4b2b6;
+$gray-6: #a19fa4;
+$gray-7: #8b888e;
+$gray-8: #6e6b72;
+$gray-9: #423d47;
 $black:  #000;
 
 // colors
-$teal:        #0b7366;
-$teal-light:  #f6fafa;
-$teal-dark:   #07483f;
-$orange:      #a98069;
-$orange-light:#e9dfd9;
-$orange-dark: #6a2d0a;
+$twilight:    #2E2235;
+$paper:       #F6F4F1;
+$dusk:        #222936;
+$golden:      #E0AF54;
+$wax:         #FEE97D;
+$dust:        #844F2B;
 
-$primary:       $teal;
-$secondary:     $orange-dark;
-$light:         $teal-light;
+$primary:       $twilight;
+$secondary:     $dust;
+$light:         $paper;
 $light-accent:  $gray-3;
 $dark:          $gray-9;
 
 // Base document colors
 $navbar-bg: $primary; // navbar
-$navbar-fg: $teal-light; // navbar foreground elements
+$navbar-fg: $paper; // navbar foreground elements
 $navbar-hl: $white; // highlight color when hovering over navbar links
-$link-color: $orange-dark; // hyperlinks
+$link-color: $dust; // hyperlinks
 
 // Inline code
-$code-bg: $orange-light; // inline code background color
-$code-color: $orange-dark; // inline code text color
+$code-bg: $wax; // inline code background color
+$code-color: $dust; // inline code text color
 
 // Contrast
 $min-contrast-ratio:   7;
@@ -59,7 +59,7 @@ h1, h2 {
   font-size: 1.3em;
   font-weight: 900;
   font-family: Domine, serif;
-  color: $teal-dark;
+  color: $dusk;
 }
 
 h2 {
@@ -69,7 +69,7 @@ h2 {
 h3, h4 {
   font-weight: 700;
   font-family: Domine, serif;
-  color: $teal;
+  color: $twilight;
 }
 
 h3 {
@@ -118,10 +118,7 @@ pre.sourceCode {
 // about section
 
 // remove about separator
-div.quarto-about-jolla .about-sep {
-  height: 0;
-  margin: 0;
-}
+
 
 div.quarto-about-jolla .about-link {
   color: $secondary;
@@ -203,7 +200,7 @@ div.cookie-consent-footer {
 
 .termsfeed-com---nb .cc-nb-main-container {
     padding: 1rem;
-    background: $orange-light;
+    background: $wax;
     border-radius: 6px;
 }
 
@@ -216,21 +213,21 @@ div.cookie-consent-footer {
 }
 
 .termsfeed-com---palette-light .cc-nb-okagree, .termsfeed-com---palette-light .cc-nb-reject, .cc-pc-container .cc-cp-foot-save {
-  background-color: $teal;
+  background-color: $twilight;
   border-radius: 6px;
 }
 
 .termsfeed-com---palette-light .cc-nb-changep {
-  background-color: $teal-light;
+  background-color: $paper;
   border-radius: 6px;
 }
 
 .cc-cp-body .cc-cp-body-tabs-item-link, .cc-cp-body .cc-cp-body-tabs {
-  background-color: $orange-light;
+  background-color: $wax;
 }
 
 .termsfeed-com---palette-light .cc-cp-body-tabs-item[active=true] button {
-  background-color: $orange-dark;
+  background-color: $dust;
   color: white;
 }
 
@@ -308,7 +305,7 @@ div.quarto-post .listing-categories .listing-category:hover, .quarto-category:ho
 // page buttons
 
 .page-link {
-  background-color: $orange-light;
+  background-color: $wax;
   color: $secondary;
 }
 

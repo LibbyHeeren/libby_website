@@ -7,5 +7,3 @@ pagetitle: "Jadey Ryan | 404"
 [The page you requested is nowhere to be found.]{.h3}
 
 Try going [home](/) or using the search feature.
-
-If you found this page from a link somewhere out in the wild web, please [let me know](mailto:jadey.nicole.ryan@gmail.com) so I can fix it!

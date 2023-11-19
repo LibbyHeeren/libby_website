@@ -1,5 +1,5 @@
 project:
-  type: website
+  type: website # https://icons.getbootstrap.com/
   preview:
     port: 3434
     browser: true
@@ -10,25 +10,25 @@ execute:
   freeze: auto
 
 website:
-  title: "Jadey Ryan"
-  description: "R code, environmental data science, and cats."
-  site-url: https://jadeyryan.com
-  repo-url: https://github.com/jadeynryan/jadey_website
+  title: "Libby Heeren"
+  description: "Data Science, R community, statistics, human connection."
+  site-url: https://libbyheeren.com
+  repo-url: https://github.com/LibbyHeeren/libby_website
   repo-actions:
     - source
     - issue
-  favicon: assets/img/JR-favicon.svg
-  twitter-card:
-    creator: "@jadeynryan"
-    image: assets/img/JR-logo-white-bg.png
-    image-alt: "Cat with tail shaped as the letter J next to last name initial R"
-  open-graph:
-    locale: en_EN
-    image: assets/img/JR-logo-white-bg.png
-    image-alt: "Cat with tail shaped as the letter J next to last name initial R"
+  favicon: assets/img/LIBS-favicon.png
+  # twitter-card:
+  #   creator: "@jadeynryan"
+  #   image: assets/img/JR-logo-white-bg.png
+  #   image-alt: "Cat with tail shaped as the letter J next to last name initial R"
+  # open-graph:
+  #   locale: en_EN
+  #   image: assets/img/JR-logo-white-bg.png
+  #   image-alt: "Cat with tail shaped as the letter J next to last name initial R"
   page-navigation: true
   google-analytics:
-    tracking-id: "G-LEVV3VZT0E"
+    tracking-id: "G-ZEZYBFE5EF"
     anonymize-ip: true
   cookie-consent:
     type: express
@@ -36,50 +36,48 @@ website:
 
   navbar:
     pinned: true
-    logo: assets/img/JR-logo-white.svg
-    logo-alt: "Cat with tail shaped as the letter J next to last name initial R"
+    logo: assets/img/book-vivid.png
+    logo-alt: "Open book with magical golden sparkles and pink light radiating from it"
     left:
       - text: About
-        icon: person-circle
-        aria-label: about me
+        icon: bi-stars
         href: index.qmd
-      - text: CV
-        icon: file-earmark-text-fill
-        aria-label: cv
-        href: cv.qmd
-      - text: Blog
-        icon: pen-fill
-        aria-label: blog
-        href: blog.qmd
-      - text: Talks
-        aria-label: talks
+      # - text: CV
+      #   icon: file-earmark-text-fill
+      #   aria-label: cv
+      #   href: cv.qmd
+      # - text: Blog
+      #   icon: pen-fill
+      #   aria-label: blog
+      #   href: blog.qmd
+      # - text: Talks
+      #   aria-label: talks
+      #   icon: mic-fill
+      #   href: talks.qmd
+      # - text: Projects
+      #   icon: puzzle-fill
+      #   aria-label: projects
+      #   href: projects.qmd
+      - text: Data Humans Podcast
         icon: mic-fill
-        href: talks.qmd
-      - text: Projects
-        icon: puzzle-fill
-        aria-label: projects
-        href: projects.qmd
-      - text: the coding cats shop
-        icon: bag-heart-fill
-        aria-label: the coding cats shop
-        href: shop.qmd
+        href: podcast.qmd
     tools:
-      - icon: rss
-        aria-label: rss
-        href: blog.xml
+      # - icon: rss
+      #   aria-label: rss
+      #   href: blog.xml
       - icon: github
-        aria-label: GitHub
-        href: https://github.com/jadeynryan
+        aria-label: Git Hub
+        href: https://github.com/LibbyHeeren
       - icon: linkedin
-        aria-label: LinkedIn
-        href: https://www.linkedin.com/in/jadeynryan/
+        aria-label: Linked In
+        href: https://www.linkedin.com/in/libbyheeren/
       - icon: mastodon
         aria-label: Mastodon
-        href: https://fosstodon.org/@jadeynryan
+        href: https://data-folks.masto.host/@libby
 
   page-footer:
     border: true
-    left: "&#169; 2023 Jadey Ryan"
+    left: "&#169; 2023 Libby Heeren"
     center:
       - text: Code of conduct
         href: coc.qmd
@@ -94,7 +92,7 @@ format:
     theme: [flatly, assets/styling/theme.scss]
     toc: true
     toc-depth: 4
-    pagetitle: "Jadey Ryan | {{< meta title >}}"
+    pagetitle: "Libby Heeren | {{< meta title >}}"
     page-layout: article
     smooth-scroll: true
     link-external-newwindow: true

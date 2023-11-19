@@ -1,13 +1,14 @@
 ---
 pagetitle: "Libby Heeren | Data Humans" # What shows up in google search results
-title: "Libby Heeren" # Right under the round photo
+title: "Libby Heeren" # Right under the photo on trestle template
 subtitle: "statistics-flavored data human" # smaller, under title
-image: assets/img/headshot.png
-image-alt: "Libby is a white woman with wavy brown hair wearing pink glasses and smiling"
+image: assets/img/headshot-tall.png
+image-alt: "Libby is a white woman with wavy brown and grey hair and brown eyes. She's wearing a grey nasa shirt and pink glasses, and she's smiling warmly. A shelf behind her is full of colorful items."
 about:
-  id: hero-heading
-  template: jolla
-  image-width: 10em
+  # id: hero-heading
+  template: trestles
+  image-width: 15em
+  image-shape: rounded
   links:
     - icon: linkedin
       text: LinkedIn
@@ -19,35 +20,18 @@ about:
       href: https://github.com/LibbyHeeren
     - icon: mic-fill
       text: Podcast
-      aria-label: Data Humans website
-      href: https://www.datahumans.club/episodes
+      aria-label: Data Humans Podcast
+      href: podcast.qmd
 toc: false
 anchor-sections: false
 execute: 
   freeze: true
 ---
 
-::: {#hero-heading}
-:::
+*Hello, data humans!* I'm a data scientist, an R educator, and a data community builder who wants you to know **you belong in the data community**. I'm so glad you're here! I love applied statistics, machine learning, and useful data visualizations, but I love good people more than anything.  
 
-## Hello, Data Humans!
+In my free time, you can find me hanging out with my husband and our cats, reading, sewing, playing video games, painting with watercolors, watching nerdy things, or drinking tea.  
 
-I'm on a mission to speak candidly about the day-to-day work of data professionals. I love applied statistics, machine learning, and useful visualizations. I'm also an R educator and data community builder who wants you to know you belong in the R community. I'm so glad you're here!
+Looking for a data community where you can make cool data friends? If you don't already attend, I highly recommend checking out [the Posit Data Science Hangout](https://posit.co/data-science-hangout/) and I hope I see you there 🥰   
 
-In my free time, you can find me hanging out with my husband and our cats, or doing one of the following:
-
--   reading non-fiction, fantasy, mystery, and sci-fi ([have you seen my DS Hangout recommendations?!](https://www.notion.so/datahumans/2f4552fd18be4d439b6b6977077e6ca5?v=738d0654fd81490890b8f741a2ef0a3c))
-
--   sewing, knitting, crocheting, and embroidering
-
--   playing video games
-
--   being a Notion power-user 😍
-
--   attending data community events ([I recommend the DSH](https://posit.co/data-science-hangout/))
-
--   illustrating, painting, and taking photographs
-
--   watching something delightfully nerdy
-
--   Tea. Black. Hot... with oat milk 😋
+Oh, and have you seen [my Data Science Hangout book recommendations](https://www.notion.so/datahumans/2f4552fd18be4d439b6b6977077e6ca5?v=738d0654fd81490890b8f741a2ef0a3c)? It's where you can find reading recs from Data Science Hangout leaders. I cannot recommend [the book Subtract by Leidy Klotz](https://www.leidyklotz.com/) enough.  

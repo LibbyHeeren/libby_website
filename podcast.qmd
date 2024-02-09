@@ -23,4 +23,4 @@ I found myself wanting to talk candidly with other data professionals and studen
 Turns out, we all have a lot of struggles, fears, aspirations, and questions in common, we just don’t put it out in the world because that feels vulnerable. So, let’s share our stories.  
 
 
-**Links to individual episodes and show notes will be here soon. Thanks for your patience as I migrate my site from Squarespace to Quarto!** 
+**Links to individual episodes and show notes will be here soon. Thanks for your patience as I migrate my site from Squarespace to Quarto! You can go to [https://datahumans.libsyn.com/site](https://datahumans.libsyn.com/site) in the meantime.** 

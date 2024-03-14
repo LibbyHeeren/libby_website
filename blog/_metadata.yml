@@ -3,25 +3,38 @@
 # prevents posts from re-rendering unless explicitly told to do so (for more, see https://quarto.org/docs/projects/code-execution.html#freeze)
 freeze: true
 
+# default author
+author: Libby Heeren
+citation: true
+
+# align figures to left
+# fig-align: "left"
+
+# lightbox extension
+lightbox:
+  desc-position: bottom  # position of description
+  match: auto # give all images lightbox treatment
+  effect: zoom # how lightbox opens/closes
+  loop: false # doesn't loop to first image in gallery
+
+
 format:
   html:
     pagetitle: "Libby's Bloglets | {{< meta title >}}"
-    include-after-body:
-      - ../assets/html/subscribe.html
-      - ../assets/html/buymecoffee.html
+    # include-after-body:
+    #   - ../assets/html/subscribe.html
+    #   - ../assets/html/buymecoffee.html
 
-# comments:
-#     giscus:
-#       repo: jadeynryan/jadey-website-giscus
-#       repo-id: R_kgDOKisUNQ
-#       category: Announcements
-#       category-id: DIC_kwDOKisUNc4CaSRD
-#       mapping: pathname
-#       reactions-enabled: true
-#       loading: lazy
-#       input-position: top
-#       theme: light
-#       language: en
+comments:
+    giscus:
+      repo: LibbyHeeren/libby_website_giscus
+      repo-id: R_kgDOLgChqg
+      category: Announcements
+      category-id: DIC_kwDOLgChqs4Cd9K2
+      mapping: pathname
+      reactions-enabled: true
+      loading: lazy
+      input-position: top
+      theme: light
+      language: en
 
-# default author
-author: Libby Heeren

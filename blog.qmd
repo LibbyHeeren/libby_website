@@ -1,5 +1,5 @@
 ---
-title: "data whiskeRs"
+title: "Libby's Bloglets 🐽"
 listing:
   contents: blog
   type: default
@@ -12,17 +12,39 @@ listing:
     - categories
   categories: true
   sort: "date desc"
-  page-size: 5
+  page-size: 10
   feed: true
 format:
-  html:
-    include-after-body:
-      - ./assets/html/subscribe.html
-      - ./assets/html/buymecoffee.html
+  html: default
+    # include-after-body:
+      # - ./assets/html/subscribe.html
+      # - ./assets/html/buymecoffee.html
 ---
 
-Welcome to my blog, **data whiskeRs**! I'm so happy you're here to learn with me. I'll be using this space to write about what I'm learning, working on, and am curious about.
+This is a messy, experimental, learning-out-loud space. My mission is to not curate everything to heck and to share the reality of **my** data work. This means I'll get things wrong, I'll try things out, and I'll strive for fun over perfection.
 
-I welcome respectful feedback and discussions that adhere to the [Code of Conduct](coc.qmd).
+I welcome conversation that is kind, curious, and courteous.  
 
 ---
+
+```{r, include=FALSE}
+# Code snippet modified from Danielle Navarro
+
+# https://blog.djnavarro.net/posts/2022-04-20_porting-to-quarto/#netlify-redirects
+
+# list names of post folders
+posts <- list.dirs(
+  path = here::here("blog"),
+  full.names = FALSE,
+  recursive = FALSE
+)
+
+# extract the slugs
+slugs <- gsub("^.*_", "", posts)
+
+# lines to insert to a netlify _redirect file
+redirects <- paste0("/blog/", slugs, " ", "/blog/", posts)
+
+# write the _redirect file
+writeLines(redirects, here::here("_redirects"))
+```

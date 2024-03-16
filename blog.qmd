@@ -1,5 +1,5 @@
 ---
-title: "Libby's Bloglets 🐽"
+title: "Libby's Blog"
 listing:
   contents: blog
   type: default

@@ -20,7 +20,7 @@ lightbox:
 
 format:
   html:
-    pagetitle: "Libby's Bloglets 🐽 | {{< meta title >}}"
+    pagetitle: "Libby's Blog | {{< meta title >}}"
     # include-after-body:
     #   - ../assets/html/subscribe.html
     #   - ../assets/html/buymecoffee.html

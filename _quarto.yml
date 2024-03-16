@@ -46,10 +46,10 @@ website:
       #   icon: file-earmark-text-fill
       #   aria-label: cv
       #   href: cv.qmd
-      # - text: Blog
-      #   icon: pen-fill
-      #   aria-label: blog
-      #   href: blog.qmd
+      - text: Blog
+        icon: book-fill
+        aria-label: blog
+        href: blog.qmd
       # - text: Talks
       #   aria-label: talks
       #   icon: mic-fill

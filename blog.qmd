@@ -21,7 +21,7 @@ format:
       # - ./assets/html/buymecoffee.html
 ---
 
-This is a messy, experimental, learning-out-loud space. An "I want to share this cool thing" space. A "lemme show you how one way to do this" space. My mission is to not curate everything to heck and to share the reality of what data work looks like for me. This means I'll get things wrong, I'll try things out, and I'll strive for fun over perfection. I hope you find some joy in it.  
+This is a messy, experimental, learning-out-loud space. It's also a sharing space where I can drop random "here's one way to do this thing" type of posts. My mission is to not curate the heck out of everything and to share the reality of what data work looks like for me. This means I'll get things wrong, I'll try things out, and I'll strive for fun over perfection.   
 
 I welcome conversation that is kind, curious, and courteous.  
 

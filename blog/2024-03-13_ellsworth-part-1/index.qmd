@@ -103,7 +103,7 @@ generate_color_grid <- function(size, colors) {
 In this initial function seen above, it returned a matrix, but I later changed it to return a vector. I realized that my initial code to create a data frame of coordinates and populate them with the colors was unnecessarily complex because my colors were in a matrix and they really didn't need to be. Here is me putting those pieces together: 
 
 ```{r}
-# # Set the size of the grid
+# Set the size of the grid
 size <- 40
 
 # Define the colors
@@ -142,9 +142,10 @@ So, I changed my function to output a vector and then I was able to add that to 
 # Define a function to generate a random vector of colors
 generate_color_vector <- function(size, colors) {
 
-  # Create a size^2 vector filled with a random sample of colors from a color list
+# Create a size^2 vector filled with a random sample of colors from a color list
   color_vector <- sample(x = colors,
-                         size = size * size,   # "size" is the # of squares on each side
+                         # "size" is the # of squares on each side
+                         size = size * size,   
                          replace = TRUE)
 
   return(color_vector)
@@ -217,4 +218,4 @@ I DID IT! I MADE A THING THAT PROVES I CAN PROBABLY MAKE THE BIGGER THING! I did
 ![My early attempt at recreating piece VII with R](images/my-poc-piece-VII.png)
 :::
 
-It was time to analyze the probabilities of the actual piece I was aiming for: piece III! But it was gonna have to wait until the next day. And so will the next blog post. I'll link the second post in the series here when it's ready. Hope you enjoyed my mayhem!  
+It was time to analyze the probabilities of the actual piece I was aiming for: piece III! But it was gonna have to wait until the next day. And so will the next blog post. I'll link the [second post in the series](../2024-04-01_ellsworth-part-2/index.qmd) here when it's ready. Hope you enjoyed my mayhem!  

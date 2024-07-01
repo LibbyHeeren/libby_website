@@ -1,0 +1,116 @@
+---
+title: "Making Hex Sticker Magnets"
+description: "A short blog with video showing how to make wooden magnets from hex stickers"
+date: "2024-06-30"
+image: images/hex_blog_thumbnail.png
+image-alt: "Libby's hands holding a hexagonal green rmarkdown sticker stuck to a hexagonal wood tile with the words 'Make a hex sticker magnet with me'"
+categories:
+  - R
+  - Crafts
+# bibliography: references.bib
+# number-sections: true
+execute: 
+  eval: false # no code chunks will evaluate, just the code will show up
+draft: false # true prevents this from going in the listing
+format:
+  html:
+    fig-align: center
+    toc-expand: true
+---
+
+------------------------------------------------------------------------
+
+## What are we making? HEX MAGNETS!
+
+I have a bazillion hex stickers from various R-related activities, but there's only so much real estate on my laptop. I wanted to make some magnets out of my stickers so that I could display them in a cool way and be able to rearrange and move them whenever I wanted. This is what I came up with and it turned out to be a super fun and accessible weekend project. Keep reading to see materials, instructions, and a short how-to video.
+
+![](images/01_final_hexes.png){fig-align="center"}
+
+## What you'll need
+
+![](images/00_materials.png){fig-align="center"}
+
+[Wood hex tiles](https://www.amazon.com/dp/B0C81RBHDX?psc=1&ref=ppx_yo2ov_dt_b_product_details) - I paid \$13 for 120 of them.  
+
+[Magnetic 2" tape](https://www.amazon.com/dp/B0D6HC54C1?ref=ppx_yo2ov_dt_b_product_details&th=1) - I paid \$19 for 10 feet.  
+
+[Hex stickers](https://swag.posit.co/s/shop) - I already had a bunch, as I'm sure you do.  
+
+Sturdy scissors - I'm using an ancient pair of serrated scissors, but I think any pair of sturdy shears will do. You may need to wipe them off periodically as they get gummy from the adhesive.  
+
+White gel pen - I'm using a Sakura Gelly Roll. I also had luck with a pencil, but it's harder to see on the magnet!
+
+Paper template for magnets - I made this from a piece of card stock junk mail. I traced one of the wood hex tiles and then made the template about 1/8" (2mm) smaller all the way around.
+
+I'll eventually mount these on some magnetic contact paper that I'll stick to the plexiglass of a 24" x 36" poster frame. I think it will look great hanging in my office as a memo board. Here's the [magnetic contact paper I plan to use](https://www.amazon.com/dp/B0CPBT7PLV?ref=ppx_yo2ov_dt_b_product_details&th=1).
+
+## How to assemble the magnets
+
+Don't feel like reading? Watch this:
+
+{{< video https://youtu.be/ztrVS8DUTi8?si=1vcEFqlt4wzJWilq >}}
+
+### Step 1: Check the fit of your hex sticker  
+
+Being from different manufacturers, hex stickers aren't one uniform size or shape, and these wood hexes probably have slight variations, too. Checking the fit of your sticker against the tile is a good idea. Just place the tile on top of the face-up sticker to see how much hangs over. This helps with awareness of where to place the sticker on top.  
+
+::: {layout-ncol="2"}
+![Place the wood hex on top.](images/02_check_fit.jpeg)
+
+![This one fits perfectly!](images/03_check_fit.jpeg)
+:::
+
+Some hex stickers will be a little larger than the wood tiles. This is ok! I just trimmed off the excess after sticking them on. Scissors or a craft knife work fine for this.  
+
+### Step 2: Place your sticker  
+
+Peel the backing off your sticker and then place it back on just one corner section. This gives you something to hold on to, and also lets you peel the sticker back off easily if you need to rearrange it. 
+
+![Your sticker and backing will look like this](images/04_peel.jpg){fig-align="center"}
+
+If your sticker is exactly the same size as your hex, I'd keep the sticker face up and place it onto the hex tile. Gently stick down the corner furthest from your backing paper and use it as a pivot point to arrange the rest of the sticker. Don't press down just yet, just get it in place. Your backing paper will be sticking out one side.  
+
+![You can't even see the tile under this sticker, but it's there!](images/05_stick.jpg){fig-align="center"}
+
+If your sticker is larger than the hex, I'd place the sticker face down and arrange the wooden hex tile on top of it so you can make sure an equal amount hangs over each side.  
+
+Once you like the positioning, press down gently on the side furthest from the backing paper to secure it, then gently peel and remove the backing paper and smooth the rest of the sticker onto the tile.  
+
+::: {layout-ncol="2"}
+![Get rid of that backing paper now](images/06_remove_back.jpg) 
+
+![and smooth it out!](images/07_smooth.jpg) 
+
+:::
+
+You can see there just a sliver of wood showing on one side, but I'll just fill that with a permanent marker and you can't tell.    
+
+![No one's gonna know](images/08_fill_sharpie.jpg){fig-align="center"}
+
+### Trace and cut out your magnet
+
+Trace your paper template onto the dark side of the magnet. The backing paper of mine was too slippery to write on! Cut along the inside of the marking line so that there's no white pen visible once it's cut.  
+
+![](images/09.5_mag_process.jpeg){fig-align="center"}
+
+I went ahead and cut a whole stack while listening to a podcast. Nice bit of busy work. 
+
+![](images/10_mag_stack.jpeg){fig-align="center"}
+
+### Place your magnet  
+
+Peel the backing off of your magnet and place it on the back of the wooden hex tile. You don't have to be precious about this part, just get it generally in the center.  
+
+
+::: {layout-ncol="2"}
+![My magnets were SUPER sticky.](images/11_peel_mag.jpeg) 
+
+![This doesn't have to be perfect!](images/12_place_mag.jpeg)
+
+:::
+
+### You're done! Go make a bunch!
+
+Pretty simple, right? Have fun! And tag me on LinkedIn if you make some, I want to see!  
+
+![ta-da!](images/13_hex_group.jpg){fig-align="center"}

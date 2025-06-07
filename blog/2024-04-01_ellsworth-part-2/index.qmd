@@ -460,3 +460,5 @@ I remember trying to go to sleep at this point after watching that YouTube video
 ![](images/14-prob-matrix-notes.jpeg){fig-align="center"}
 
 And then I went to bed hoping that my handwritten code would actually work 🥱   
+
+You can find [the third post in the series here](../2025-06-07_ellsworth-part-3/index.qmd).  

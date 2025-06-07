@@ -32,7 +32,7 @@ Developing is messy and fun! There is a lot of trial and error, loads of failure
 I want to create an app that will generate a piece of artwork akin to [Ellsworth Kelly’s Spectrum Colors Arranged by Chance III](https://ellsworthkelly.org/work/spectrum-colors-arranged-by-chance/) from 1951, a paper on paper collage, seen here in different white balances. Paper yellows over time, so I'm thinking it was once more vibrant. Plus, as a photographer, I know light defines color and that screens and cameras are treacherous.
 
 ::: {layout-ncol="2"}
-![Original photograph from ellsworthkelly.org](images/Original-piece-III.png)
+![Original photograph of Piece III from ellsworthkelly.org](images/Original-piece-III.png)
 
 ![Slightly white balanced version](images/Original-piece-III-balanced.png)
 :::

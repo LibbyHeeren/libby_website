@@ -1,7 +1,7 @@
 ---
 title: "The Ellsworth Project: Part 3"
 description: "Part 3 of a series documenting my learning process as I code a Shiny app that generates random artwork inspired by Ellsworth Kelly's Spectrum Colors by Chance Series"
-date: "2025-06-07"
+date: "2025-06-06"
 image: images/00-cover-image.png
 image-alt: "Hand-drawn image of colors sampled from Kelly's artwork with numbers next to them that seem to be counts"
 categories:

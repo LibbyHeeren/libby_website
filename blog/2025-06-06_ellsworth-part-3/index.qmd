@@ -66,7 +66,7 @@ Here is my original sampling of colors on the left compared to my new sampling o
 
 ![](images/06-hex-code-palettes-in-rstudio.png){fig-align="center"}
 
-If you’re curious, I use a color picker Chrome Extension for sampling colors. Here’s the full palette in my favorite color visualization tool, Viz Palette:
+If you’re curious, I use a color picker Chrome Extension for sampling colors. Here’s the full palette in my favorite color visualization tool, [Viz Palette](https://projects.susielu.com/viz-palette):
 
 ```{=html}
 <iframe width="780" height="500" src="https://projects.susielu.com/viz-palette?colors=[%22#1a8bb3%22,%22#0950ae%22,%22#4dace5%22,%22#126ddb%22,%22#e48dc4%22,%22#aba9e8%22,%22#872791%22,%22#6d1617%22,%22#d2a1c0%22,%22#952017%22,%22#b81634%22,%22#df3b43%22,%22#e35c47%22,%22#eb8749%22,%22#f6e254%22,%22#7b442d%22,%22#000000%22,%22#1a6e7e%22,%22#7cbf7b%22,%22#add2b8%22]&backgroundColor=%22#edefee%22&fontColor=%22black%22&mode=%22normal%22" title="Embedded Viz Palette"></iframe>

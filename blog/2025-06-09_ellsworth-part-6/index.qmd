@@ -1,0 +1,1148 @@
+---
+title: "The Ellsworth Project: Part 6"
+description: "Part 6 of a series documenting my learning process as I code a Shiny app that generates random artwork inspired by Ellsworth Kelly's Spectrum Colors by Chance Series"
+date: "2025-06-09"
+image: images/00-cover-image.png
+image-alt: "A small hand-drawn 4 by 4 matrix grid with some squares colored yellow, pink, green, and blue. Three yellow squares are touching each other, and those three are circled in pink with a note that says 'technically, this could happen, but the outer edge of the final matrix will be changed to the background color anyway.'"
+categories:
+  - R
+  - Shiny
+# bibliography: references.bib
+# number-sections: true
+number-depth: 2
+execute: 
+  eval: false # no code chunks will evaluate, just the code will show up
+draft: false # true prevents this from going in the listing
+format:
+  html:
+    fig-align: center
+---
+
+------------------------------------------------------------------------
+
+## February 27th, 2024
+
+Wow, I barely slept last night. And all I want to do now is the exact thing I tried to talk myself out of yesterday: regulate the groupings of colors so that no more than two can be touching. I gotta at least play around with it, right?  
+
+My current process for generating and assigning colors is this:  
+
+- Define size and colors and maybe background  
+- Generate a random vector of colors, one for each cell of a size x size grid  
+- Create a data frame of coordinates and add the color vector to it  
+
+The change I’m proposing, in raw idea form is this:  
+
+- Define size and colors and background  
+- Create an empty size x size matrix  
+- Write a loop that goes through the matrix row by row or column by column and assigns a random color to each cell (using the same method `sample(x = colors, size = size * size, replace = TRUE)`)  
+    - See handwritten notes below  
+    - But, before assigning a color at all, check to see if the adjacent filled cells are the same color. If they are, remove that color from the sample list of colors:  
+        
+        `sample(x =` 
+        `colors[-which(colors == same_color)], size = ~~size * size~~ 1, replace = TRUE)`
+        
+- Create a data frame of coordinates, convert the color matrix to a vector, and add the vector of colors to the data frame  
+
+The resulting data frame of colors, when plotted, should show no more than two squares of the same color grouped together, except for the possibility of some clustering on the top left edge, which won’t be seen anyway as the outer circuit will always be changed to the background color. This will (I think) add a constraint around the number of colors, because I think you’d need at least 5 colors in order to not have clustering. I guess I can test it.  
+
+![](images/01-nested-ifs.jpeg){fig-align="center"}
+
+Muahaha, look at that complex nested ifelse monstrosity! Let me see if it works, and then I can think about simplifying it.  
+
+```{r}
+# Define all the stuff
+size <- 40
+circuits <- ifelse(size %% 2 == 0, size/2, (size+1)/2)
+
+# Choose background color, #EDEFEE is paper, #000000 is black
+background <- "#EDEFEE"
+
+# Define the colors
+colors <- c(#"#EDEFEE", # Paper
+  "#1A8BB3", # Teal - no longer teal, just bright blue
+  "#0950AE", # Dark blue
+  "#4DACE5", # Light blue
+  "#126DDB", # Blue
+  "#E48DC4", # Pink
+  "#ABA9E8", # Light purple
+  "#872791", # Purple
+  "#6D1617", # Dark red
+  "#B81634", # Red
+  "#DF3B43", # Red orange
+  "#E35C47", # Orange
+  "#EB8749", # Light orange
+  "#F6E254", # Yellow
+  "#7B442D", # Brown
+  "#000000", # Black
+  "#1A6E7E", # Dark green - no longer dark green, now looks teal
+  "#7CBF7B", # Green
+  "#ADD2B8") # Light green
+
+##### Create a replacement get_color_vector function
+get_color_vector <- function(size, colors){
+  
+  # Define an empty size x size matrix
+  color_matrix <- matrix("", nrow = size, ncol = size)
+  
+  # For loop to go row by row
+  for (i in 1:nrow(color_matrix)){
+    
+    # For loop to go column by column
+    for (j in 1:ncol(color_matrix)){
+      
+      # If you're in the first cell, assign a random color
+      if (i == 1 && j == 1){
+        color_matrix[i,j] <- sample(x = colors, 
+                                    size = 1, 
+                                    replace = TRUE)
+      } else if (i == 1 && j != 1){ # if rest of first row
+        
+        # Check the color of the cell to the left
+        left_color <- color_matrix[i, j-1]
+        # Assign anything but that color to this cell
+        color_matrix[i,j] <- sample(x = colors[-which(colors == left_color)], 
+                                    size = 1, 
+                                    replace = TRUE)
+      
+      } else if (i != 1 && j == 1){ # if in 1st col of rows 2:end
+        
+        # Check the color of the cell above
+        up_color <- color_matrix[i-1, j]
+        # Assign anything but that color to this cell
+        color_matrix[i,j] <- sample(x = colors[-which(colors == up_color)], 
+                                    size = 1, 
+                                    replace = TRUE)
+      } else {
+        
+        # Check both left and up colors
+        left_color <- color_matrix[i, j-1]
+        up_color <- color_matrix[i-1, j]
+        
+        # Check if they're the same color, if so, assign other color
+        if (left_color == up_color){
+          color_matrix[i,j] <- sample(x = colors[-which(colors == up_color)], 
+                                      size = 1, 
+                                      replace = TRUE)
+        } else {
+          
+          # If colors aren't the same, assign a random color
+          color_matrix[i,j] <- sample(x = colors, 
+                                      size = 1, 
+                                      replace = TRUE)
+        }
+      }
+    }
+  }
+  
+  # return the color matrix as a vector
+  return(as.vector(color_matrix))
+}
+
+# Get new color vector and bind it to a data frame of coordinates
+
+color_vector <- get_color_vector(size, colors)
+
+df <- expand.grid(x = 1:size, y = 1:size)
+
+df$color <- color_vector
+
+# Print to see if it worked
+
+ggplot(df, aes(x = x, y = y, fill = color)) +
+  geom_tile() +  # Add tiles
+	scale_y_reverse() +
+  scale_fill_identity() +  # Use the colors stored as strings in the color column
+  theme_void() +  # Remove axis labels and background
+  coord_equal()
+```
+
+![](images/02-after-many-errors.png){fig-align="center"}
+
+Here are the errors I went through before the above worked:  
+
+```{r}
+df$color <- color_vector
+# Error in rep(value, length.out = nrows) : 
+#   attempt to replicate an object of type 'closure'
+# ^ oops, I forgot the parentheses and args in color_vector <- get_color_vector above that
+
+color_vector <- get_color_vector(size, colors)
+# Error in if (c(i, j) == c(1, 1)) { : the condition has length > 1
+# ^ oops, I knew I should have just used (i == 1 && j == 1) but I got hasty
+
+color_vector <- get_color_vector(size, colors)
+# Error in color_matrix[i, j] <- sample(x = colors, size = size * size,  : 
+#   number of items to replace is not a multiple of replacement length
+# ^ oops, I had size = 1600 instead of size = 1 in all my sample() calls
+```
+
+Alas, I’ve got some issues with the plot because there are areas in which more than two squares of the same color have been allowed to touch! When it’s only checking the square to the left and the square above to compare them, it leaves the possibility for a horizontal or vertical line of the same color. How can I fix that? If I always check for the up color and left color, and always avoid them, then I’ll likely never allow two of the same color next to each other. I kinda LIKE having pairs here and there, though.
+
+What if, starting in the third row down and the third column over, I check if up == left, but also if left 1 == left 2 or up 1 == up 2. That is, check the square above to see if it matches the square above it, and check the square to the left and the square to the left of that. If any of those three conditions is TRUE, I’ll exclude the offending color from my possible sample. Somehow. See, this is why I need at least 5 colors.  
+
+```{r}
+# Second try to create a replacement get_color_vector function
+get_color_vector <- function(size, colors){
+
+  # Define an empty size x size matrix
+  color_matrix <- matrix("", nrow = size, ncol = size)
+
+  # For loop to go row by row
+  for (i in 1:nrow(color_matrix)){
+
+    # For loop to go column by column
+    for (j in 1:ncol(color_matrix)){
+
+      # If you're in the first cell, assign a random color
+      if (i == 1 && j == 1){
+        color_matrix[i,j] <- sample(x = colors,
+                                    size = 1,
+                                    replace = TRUE)
+        (paste0("cell ", i, ", ", j, " filled"))
+      } else if (i == 1 && j > 1){ # if rest of first row
+
+        # Check the color of the cell to the left
+        left_color <- color_matrix[i, j-1]
+        # Assign anything but that color to this cell
+        color_matrix[i,j] <- sample(x = colors[-which(colors == left_color)],
+                                    size = 1,
+                                    replace = TRUE)
+        paste0("cell ", i, ", ", j, " filled")
+
+      } else if (i == 2 && j == 1){ # if in 1st col of row 2
+
+        # Check the color of the cell above
+        up_color <- color_matrix[i-1, j]
+        # Assign anything but that color to this cell
+        color_matrix[i,j] <- sample(x = colors[-which(colors == up_color)],
+                                    size = 1,
+                                    replace = TRUE)
+        paste0("cell ", i, ", ", j, " filled")
+      } else if (i == 2 && j > 2){ # if in second row, cols 3:end
+
+        # Check both 2 left and 1 up colors
+        left_color1 <- color_matrix[i, j-1]
+        left_color2 <- color_matrix[i, j-2]
+        up_color <- color_matrix[i-1, j]
+
+        # Check if they're the same color, if so, assign other color
+        if (left_color == up_color || left_color1 == left_color2){
+          color_matrix[i,j] <- sample(x = colors[-which(colors %in% c(up_color, left_color1))],
+                                      size = 1,
+                                      replace = TRUE)
+          paste0("cell ", i, ", ", j, " filled")
+        } else {
+
+          # If colors aren't the same, assign a random color
+          color_matrix[i,j] <- sample(x = colors,
+                                      size = 1,
+                                      replace = TRUE)
+          paste0("cell ", i, ", ", j, " filled")
+        }
+      } else if (i > 2 && j == 1){ # if in first col of rows 3 and down
+
+        # Check colors of up1 and up2
+        up_color1 <- color_matrix[i-1, j]
+        up_color2 <- color_matrix[i-2, j]
+
+        # Check if they're the same color, if so, assign other color
+        if (up_color1 == up_color2){
+          color_matrix[i,j] <- sample(x = colors[-which(colors == up_color1)],
+                                      size = 1,
+                                      replace = TRUE)
+          paste0("cell ", i, ", ", j, " filled")
+        } else {
+
+          # If colors aren't the same, assign a random color
+          color_matrix[i,j] <- sample(x = colors,
+                                      size = 1,
+                                      replace = TRUE)
+          paste0("cell ", i, ", ", j, " filled")
+        }
+      } else if (i > 2 && j > 2){ # if in row 3 and down, col 3 and over
+
+        # Check for all three conditions
+        left_color1 <- color_matrix[i, j-1]
+        left_color2 <- color_matrix[i, j-2]
+        up_color1 <- color_matrix[i-1, j]
+        up_color2 <- color_matrix[i-2, j]
+
+        # If any matches, assign other color
+        if (left_color1 == left_color2 || left_color1 == up_color1 || up_color1 == up_color2){
+
+          color_matrix[i,j] <- sample(x = (colors[-which(colors %in% c(up_color1, left_color1))]),
+                                      size = 1,
+                                      replace = TRUE)
+          paste0("cell ", i, ", ", j, " filled")
+        } else {
+
+          # If colors aren't the same, assign a random color
+          color_matrix[i,j] <- sample(x = colors,
+                                      size = 1,
+                                      replace = TRUE)
+
+        }
+      }
+    }
+  }
+
+  # return the color matrix as a vector
+  return(as.vector(color_matrix))
+}
+```
+
+What is this monstrosity??? And does it even work?  
+
+```{r}
+# Get new color vector and bind it to a data frame of coordinates
+
+color_vector <- get_color_vector(size, colors)
+
+df <- expand.grid(x = 1:size, y = 1:size)
+
+df$color <- color_vector
+
+# Print to see if it worked
+
+ggplot(df, aes(x = x, y = y, fill = color)) +
+  geom_tile() +  # Add tiles
+	scale_y_reverse() +
+  scale_fill_identity() +  # Use the colors stored as strings in the color column
+  theme_void() +  # Remove axis labels and background
+  coord_equal()
+```
+
+Errors I had to navigate:  
+
+```{r}
+color_vector <- get_color_vector(size, colors)
+# Error in colors == up_color || colors == left_color1 : 
+#   'length = 18' in coercion to 'logical(1)'
+# ^ oops, rewrote using %in%
+
+color_vector <- get_color_vector(size, colors)
+# Error in sample.int(length(x), size, replace, prob) : 
+#   invalid first argument
+# ^ oops, I didn't give my if statement containing the sample() call an else
+
+# <error/rlang_error>
+# Error in `geom_tile()`:
+# ! Problem while converting geom to grob.
+# ℹ Error occurred in the 1st layer.
+# Caused by error:
+# ! Unknown colour name: 
+# ^ oops, my if else statements were not inclusive of every cell and I ended up with 
+# 40 empty cells, which is either an entire row or an entire column
+
+# Here's how I figured out which ones where missing:
+unique(color_vector)
+#  [1] "#B81634" "#ABA9E8" "#1A8BB3"
+#  [4] "#000000" "#6D1617" "#1A6E7E"
+#  [7] "#7B442D" "#4DACE5" "#EB8749"
+# [10] "#872791" "#ADD2B8" "#E48DC4"
+# [13] "#E35C47" "#DF3B43" "#F6E254"
+# [16] "#126DDB" "#0950AE" "#7CBF7B"
+# [19] ""  
+
+color_vector <- if_else(color_vector == "", true = "white", false = color_vector)
+
+color_vector <- if_else(color_vector == "", true = "white", false = color_vector)
+
+ggplot(df, aes(x = x, y = y, fill = color)) +
+     geom_tile() +  # Add tiles
+     scale_y_reverse() +
+     scale_fill_identity() +  # Use the colors stored as strings in the color column
+     theme_void() +  # Remove axis labels and background
+     coord_equal()
+```
+
+![](images/03-plot-row-missing-top.png){fig-align="center"}
+
+Bingo. In row 2, columns 2:end are missing. I went back and fixed one of the loops to say row 2, col 1 or 2.  
+
+And, finally, after navigating alllll the errors (there were more than I notated, but I mentioned the main ones once even if they took me several tries to fix), I got this:  
+
+![](images/04-a-few-tetris-shapes.png){fig-align="center"}
+
+I see a few instances of an L-shaped piece, revealing another case: I need to also check left_color1 against up_left_color 😂 which would be one up and one left of the current square. Goodness! Ok, I’m gonna try. Why not, I’m having a ton of fun!  
+
+```{r}
+# Second try to create a replacement get_color_vector function
+get_color_vector <- function(size, colors){
+
+  # Define an empty size x size matrix
+  color_matrix <- matrix("", nrow = size, ncol = size)
+
+  # For loop to go row by row
+  for (i in 1:nrow(color_matrix)){
+
+    # For loop to go column by column
+    for (j in 1:ncol(color_matrix)){
+
+      # If you're in the first cell, assign a random color
+      if (i == 1 && j == 1){
+        color_matrix[i,j] <- sample(x = colors,
+                                    size = 1,
+                                    replace = TRUE)
+        (paste0("cell ", i, ", ", j, " filled"))
+      } else if (i == 1 && j > 1){ # if rest of first row
+
+        # Check the color of the cell to the left
+        left_color <- color_matrix[i, j-1]
+        # Assign anything but that color to this cell
+        color_matrix[i,j] <- sample(x = colors[-which(colors == left_color)],
+                                    size = 1,
+                                    replace = TRUE)
+        paste0("cell ", i, ", ", j, " filled")
+
+      } else if (i == 2 && j == 1 || j == 2){ # if in 1st or 2nd col of row 2
+
+        # Check the color of the cell above
+        up_color <- color_matrix[i-1, j]
+        # Assign anything but that color to this cell
+        color_matrix[i,j] <- sample(x = colors[-which(colors == up_color)],
+                                    size = 1,
+                                    replace = TRUE)
+        paste0("cell ", i, ", ", j, " filled")
+      } else if (i == 2 && j > 2){ # if in second row, cols 3:end
+
+        # Check both 2 left and 1 up colors, plus up_left
+        left_color1 <- color_matrix[i, j-1]
+        left_color2 <- color_matrix[i, j-2]
+        up_color <- color_matrix[i-1, j]
+        up_left_color <- color_matrix[i-1, j-1]
+
+        # Check if they're the same color, if so, assign other color
+        if (left_color1 == up_color || left_color1 == left_color2 || left_color1 == up_left_color){
+          color_matrix[i,j] <- sample(x = colors[-which(colors %in% c(up_color, left_color1))],
+                                      size = 1,
+                                      replace = TRUE)
+          paste0("cell ", i, ", ", j, " filled")
+        } else {
+
+          # If colors aren't the same, assign a random color
+          color_matrix[i,j] <- sample(x = colors,
+                                      size = 1,
+                                      replace = TRUE)
+          paste0("cell ", i, ", ", j, " filled")
+        }
+      } else if (i > 2 && j == 1){ # if in first col of rows 3 and down
+
+        # Check colors of up1 and up2
+        up_color1 <- color_matrix[i-1, j]
+        up_color2 <- color_matrix[i-2, j]
+
+        # Check if they're the same color, if so, assign other color
+        if (up_color1 == up_color2){
+          color_matrix[i,j] <- sample(x = colors[-which(colors == up_color1)],
+                                      size = 1,
+                                      replace = TRUE)
+          paste0("cell ", i, ", ", j, " filled")
+        } else {
+
+          # If colors aren't the same, assign a random color
+          color_matrix[i,j] <- sample(x = colors,
+                                      size = 1,
+                                      replace = TRUE)
+          paste0("cell ", i, ", ", j, " filled")
+        }
+      } else if (i > 2 && j > 2){ # if in row 3 and down, col 3 and over
+
+        # Check for all three conditions plus up_left
+        left_color1 <- color_matrix[i, j-1]
+        left_color2 <- color_matrix[i, j-2]
+        up_color1 <- color_matrix[i-1, j]
+        up_color2 <- color_matrix[i-2, j]
+        up_left_color <- color_matrix[i-1, j-1]
+
+        # If any matches, assign other color
+        if (left_color1 == left_color2 || left_color1 == up_color1 || up_color1 == up_color2 || up_left_color == left_color1){
+
+          color_matrix[i,j] <- sample(x = (colors[-which(colors %in% c(up_color1, left_color1))]),
+                                      size = 1,
+                                      replace = TRUE)
+          paste0("cell ", i, ", ", j, " filled")
+        } else {
+
+          # If colors aren't the same, assign a random color
+          color_matrix[i,j] <- sample(x = colors,
+                                      size = 1,
+                                      replace = TRUE)
+
+        }
+      }
+    }
+  }
+
+  # return the color matrix as a vector
+  return(as.vector(color_matrix))
+}
+
+# Get new color vector and bind it to a data frame of coordinates
+
+color_vector <- get_color_vector(size, colors)
+
+df <- expand.grid(x = 1:size, y = 1:size)
+
+df$color <- color_vector
+
+# Print to see if it worked
+
+ggplot(df, aes(x = x, y = y, fill = color)) +
+  geom_tile() +  # Add tiles
+	scale_y_reverse() +
+  scale_fill_identity() +  # Use the colors stored as strings in the color column
+  theme_void() +  # Remove axis labels and background
+  coord_equal()
+```
+
+![](images/05-did-it-work.png){fig-align="center"}
+
+OMG. Did that work?! I think so! Time for dinner. 
+
+---
+
+Can the food I just ate fuel me to simplify my ridiculously over-sized function? 😂 Right now, I’m writing all these conditions and nested if else statements. Can I go element-by-element through the matrix and take these steps?  
+
+- Check if the five spaces to the left and above the cell exist  
+    - M[i-1, j], M[i-2, j], M[i-1, j-1], M[i, j-1], M[i, j-2]  
+    - `left_color1 <- ifelse((j-1) > 0, color_matrix[i, j-1], "")`  
+    `left_color2 <- ifelse((j-2) > 0, color_matrix[i, j-2], "")`  
+    `up_color1 <- ifelse((i-1) > 0, color_matrix[i-1, j], "")`  
+    `up_color2 <- ifelse((i-2) > 0, color_matrix[i-2, j], "")`  
+    `up_left_color <- ifelse((j-1) > 0 && (i-1) > 1, color_matrix[i-1, j-1], "")`  
+    `up_right_color <- ifelse((i-1) > 0 && (j+1) < (ncol(color_matrix)+1), color_matrix[i-1, j+1], "")`  
+    - Use ”” or something other than NA? Anything matched with an NA would return NA, not true or false. What would that do to an if statement? It would throw an error. If I use “” then the comparison would work.  
+- For the ones that exist, capture their colors  
+- Check to see if any relevant color pairings match, but only for all but cell [1, 1]  
+    - left_color1 == left_color2 || left_color1 == up_color1 || up_color1 == up_color2 || up_left_color == left_color1  
+        - Need to add up1 to up_left and up1 to up right  
+        - Comparisons that end up being “” == “” because cell is in row 1 or col 1 - what will happen? I’ll ask it to assign a color sampled from the colors vector that doesn’t include the color “”, which will mean it can assign any color. Right? Test.  
+```{r}
+# Try with actual colors that exist in the 18 length vector called colors
+colors[-which(colors %in% c("#1A8BB3", "#0950AE"))]
+#  [1] "#4DACE5" "#126DDB"
+#  [3] "#E48DC4" "#ABA9E8"
+#  [5] "#872791" "#6D1617"
+#  [7] "#B81634" "#DF3B43"
+#  [9] "#E35C47" "#EB8749"
+# [11] "#F6E254" "#7B442D"
+# [13] "#000000" "#1A6E7E"
+# [15] "#7CBF7B" "#ADD2B8"
+
+# Now, with blanks
+colors[-which(colors %in% c("", ""))]
+# character(0)
+
+# That's not good.
+```
+
+What if I assigned all the colors, including the blanks, to a vector, on which I called `unique()`, and then passed that to `which()`?  
+
+```{r}
+surrounding <- unique(c("", "#1A8BB3", "#0950AE", "#1A8BB3", ""))
+
+colors[-which(colors %in% surrounding)]
+#  [1] "#4DACE5" "#126DDB"
+#  [3] "#E48DC4" "#ABA9E8"
+#  [5] "#872791" "#6D1617"
+#  [7] "#B81634" "#DF3B43"
+#  [9] "#E35C47" "#EB8749"
+# [11] "#F6E254" "#7B442D"
+# [13] "#000000" "#1A6E7E"
+# [15] "#7CBF7B" "#ADD2B8"
+```
+
+That works, but what if they’re *all* blank?  
+
+```{r}
+surrounding <- unique(c("", "", "", "", ""))
+
+colors[-which(colors %in% surrounding)]
+# character(0)
+```
+
+So, as long as there’s one color in there, it will be ok, and there will always be at least one color in the list of the five surrounding cells as long as the cell isn’t the top left one, M[1, 1].  
+
+If there are any matches, I don’t want to discard all the colors if I don’t have to. Can I use `case_when` or something to create a vector of only colors that matched?  
+
+```{r}
+matching <- vector(mode = "character", length = 6)
+
+matching[1] <- ifelse(left_color1 == left_color2, left_color1, "")
+matching[2] <- ifelse(left_color1 == up_color1, left_color1, "")
+matching[3] <- ifelse(up_color1 == up_color2, up_color1, "")
+matching[4] <- ifelse(up_left_color == left_color1, up_left_color, "")
+matching[5] <- ifelse(up_left_color == up_color1, up_left_color, "")
+matching[6] <- ifelse(up_right_color == up_color1, up_right_color, "")
+
+
+matching <- unique(matching[which(matching != "")])
+```
+
+So, if there are matches, I’ll avoid assigning the cell the matching colors, if there aren't matches, any color can be assigned.  
+
+OK! Let me try to write the full, consolidated/simplified function:  
+
+```{r}
+# Third try to create a replacement get_color_vector function
+get_color_vector <- function(size, colors){
+  
+  # Define an empty size x size matrix
+  color_matrix <- matrix("", nrow = size, ncol = size)
+  
+  # For loop to go row by row
+  for (i in 1:nrow(color_matrix)){
+    
+    # For loop to go column by column
+    for (j in 1:ncol(color_matrix)){
+      
+      # If you're in the first (top left) cell, assign a random color
+      if (i == 1 && j == 1){
+        
+        color_matrix[i,j] <- sample(x = colors,
+                                    size = 1,
+                                    replace = TRUE)
+      
+      # If you're in any other cell than the top left  
+      } else {
+        
+        # Get the colors of the five surrounding cells
+        left_color1 <- ifelse((j-1) > 0, color_matrix[i, j-1], "")
+        left_color2 <- ifelse((j-2) > 0, color_matrix[i, j-2], "")
+        up_color1 <- ifelse((i-1) > 0, color_matrix[i-1, j], "")
+        up_color2 <- ifelse((i-2) > 0, color_matrix[i-2, j], "")
+        up_left_color <- ifelse((j-1) > 0 && (i-1) > 1, color_matrix[i-1, j-1], "")
+        
+        # Put them in a vector called surrounding
+        surrounding <- c(left_color1, 
+                         left_color2,
+                         up_color1,
+                         up_color2,
+                         up_left_color)
+        
+        # Check to see if any of the relavent cell colors match
+        matching <- vector(mode = "character", length = 5)
+        
+        matching[1] <- ifelse(left_color1 == left_color2, left_color1, "")
+        matching[2] <- ifelse(left_color1 == up_color1, left_color1, "")
+        matching[3] <- ifelse(up_color1 == up_color2, up_color1, "")
+        matching[4] <- ifelse(up_left_color == left_color1, up_left_color, "")
+        matching[5] <- ifelse(up_left_color == up_color1, up_left_color, "")
+        
+        matching <- unique(matching[which(matching != "")])
+        
+        # If there were no matches
+        if (length(matching) == 0){
+          
+          # Assign any random color
+          color_matrix[i,j] <- sample(x = colors,
+                                      size = 1,
+                                      replace = TRUE)
+          
+        } else { # If there WERE matches
+          
+          # Assign any other color than those in matches vector
+          color_matrix[i,j] <- sample(x = colors[-which(colors %in% matching)],
+                                      size = 1,
+                                      replace = TRUE)
+        }
+      }
+    }
+  }  
+  # return the color matrix as a vector
+  return(as.vector(color_matrix))
+} # 66 lines vs 108 for the previous version. Nice! Well, if it works.
+```
+
+Time to see if it works and troubleshoot if not.  
+
+```{r}
+# Define all the stuff
+size <- 40
+circuits <- ifelse(size %% 2 == 0, size/2, (size+1)/2)
+
+# Choose background color, #EDEFEE is paper, #000000 is black
+background <- "#EDEFEE"
+
+# Define the colors
+colors <- c(#"#EDEFEE", # Paper
+  "#1A8BB3", # Teal - no longer teal, just bright blue
+  "#0950AE", # Dark blue
+  "#4DACE5", # Light blue
+  "#126DDB", # Blue
+  "#E48DC4", # Pink
+  "#ABA9E8", # Light purple
+  "#872791", # Purple
+  "#6D1617", # Dark red
+  "#B81634", # Red
+  "#DF3B43", # Red orange
+  "#E35C47", # Orange
+  "#EB8749", # Light orange
+  "#F6E254", # Yellow
+  "#7B442D", # Brown
+  "#000000", # Black
+  "#1A6E7E", # Dark green - no longer dark green, now looks teal
+  "#7CBF7B", # Green
+  "#ADD2B8") # Light green
+
+# Third try to create a replacement get_color_vector function
+get_color_vector <- function(size, colors){
+  
+  # Define an empty size x size matrix
+  color_matrix <- matrix("", nrow = size, ncol = size)
+  
+  # For loop to go row by row
+  for (i in 1:nrow(color_matrix)){
+    
+    # For loop to go column by column
+    for (j in 1:ncol(color_matrix)){
+      
+      # If you're in the first (top left) cell, assign a random color
+      if (i == 1 && j == 1){
+        
+        color_matrix[i,j] <- sample(x = colors,
+                                    size = 1,
+                                    replace = TRUE)
+      
+      # If you're in any other cell than the top left  
+      } else {
+        
+        # Get the colors of the five surrounding cells
+        left_color1 <- ifelse((j-1) > 0, color_matrix[i, j-1], "")
+        left_color2 <- ifelse((j-2) > 0, color_matrix[i, j-2], "")
+        up_color1 <- ifelse((i-1) > 0, color_matrix[i-1, j], "")
+        up_color2 <- ifelse((i-2) > 0, color_matrix[i-2, j], "")
+        up_left_color <- ifelse((j-1) > 0 && (i-1) > 1, color_matrix[i-1, j-1], "")
+        up_right_color <- ifelse((i-1) > 0 && (j+1) < (ncol(color_matrix)+1), 
+                                 color_matrix[i-1, j+1], "")
+        
+        # Put them in a vector called surrounding
+        surrounding <- c(left_color1, 
+                         left_color2,
+                         up_color1,
+                         up_color2,
+                         up_left_color,
+                         up_right_color)
+        
+        # Check to see if any of the relavent cell colors match
+        matching <- vector(mode = "character", length = 6)
+        
+        matching[1] <- ifelse(left_color1 == left_color2, left_color1, "")
+        matching[2] <- ifelse(left_color1 == up_color1, left_color1, "")
+        matching[3] <- ifelse(up_color1 == up_color2, up_color1, "")
+        matching[4] <- ifelse(up_left_color == left_color1, up_left_color, "")
+        matching[5] <- ifelse(up_left_color == up_color1, up_left_color, "")
+        matching[6] <- ifelse(up_right_color == up_color1, up_right_color, "")
+        
+        matching <- unique(matching[which(matching != "")])
+        
+        # If there were no matches
+        if (length(matching) == 0){
+          
+          # Assign any random color
+          color_matrix[i,j] <- sample(x = colors,
+                                      size = 1,
+                                      replace = TRUE)
+          
+        } else { # If there WERE matches
+          
+          # Assign any other color than those in matches vector
+          color_matrix[i,j] <- sample(x = colors[-which(colors %in% matching)],
+                                      size = 1,
+                                      replace = TRUE)
+        }
+      }
+    }
+  }  
+  # return the color matrix as a vector
+  return(as.vector(color_matrix))
+}
+
+# Get new color vector and bind it to a data frame of coordinates
+
+color_vector <- get_color_vector(size, colors)
+
+df <- expand.grid(x = 1:size, y = 1:size)
+
+df$color <- color_vector
+
+# Print to see if it worked
+
+ggplot(df, aes(x = x, y = y, fill = color)) +
+  geom_tile() +  # Add tiles
+	scale_y_reverse() +
+  scale_fill_identity() +  # Use the colors stored as strings in the color column
+  theme_void() +  # Remove axis labels and background
+  coord_equal()
+```
+
+![](images/06-after-much-tinkering.png){fig-align="center"}
+
+Woo hoo! Worked as intended!! So pleased with that. I did stop and change one thing on the fly, which was adding the sixth comparison: comparing up_right with up_1. The only thing I don’t love now is the number of paired pairs! The plot in particular has many.  
+
+If up1 and up_left match, it would nice if we removed left1 from the options.   
+If left1 and up left match, it would be nice if we removed up1 from the options.  
+
+I think I can just add these to the vector called matching. I’ll make it 2 longer in length and create two more checks for those values.  
+
+```{r}
+# Another get_color_vector iteration, adding the 7th and 8th match criteria
+get_color_vector <- function(size, colors){
+  
+  # Define an empty size x size matrix
+  color_matrix <- matrix("", nrow = size, ncol = size)
+  
+  # For loop to go row by row
+  for (i in 1:nrow(color_matrix)){
+    
+    # For loop to go column by column
+    for (j in 1:ncol(color_matrix)){
+      
+      # If you're in the first (top left) cell, assign a random color
+      if (i == 1 && j == 1){
+        
+        color_matrix[i,j] <- sample(x = colors,
+                                    size = 1,
+                                    replace = TRUE)
+      
+      # If you're in any other cell than the top left  
+      } else {
+        
+        # Get the colors of the five surrounding cells
+        left_color1 <- ifelse((j-1) > 0, color_matrix[i, j-1], "")
+        left_color2 <- ifelse((j-2) > 0, color_matrix[i, j-2], "")
+        up_color1 <- ifelse((i-1) > 0, color_matrix[i-1, j], "")
+        up_color2 <- ifelse((i-2) > 0, color_matrix[i-2, j], "")
+        up_left_color <- ifelse((j-1) > 0 && (i-1) > 1, color_matrix[i-1, j-1], "")
+        up_right_color <- ifelse((i-1) > 0 && (j+1) < (ncol(color_matrix)+1), 
+                                 color_matrix[i-1, j+1], "")
+        
+        # Put them in a vector called surrounding
+        surrounding <- c(left_color1, 
+                         left_color2,
+                         up_color1,
+                         up_color2,
+                         up_left_color,
+                         up_right_color)
+        
+        # Check to see if any of the relavent cell colors match
+        matching <- vector(mode = "character", length = 8)
+        
+        matching[1] <- ifelse(left_color1 == left_color2, left_color1, "")
+        matching[2] <- ifelse(left_color1 == up_color1, left_color1, "")
+        matching[3] <- ifelse(up_color1 == up_color2, up_color1, "")
+        matching[4] <- ifelse(up_left_color == left_color1, up_left_color, "")
+        matching[5] <- ifelse(up_left_color == up_color1, up_left_color, "")
+        matching[6] <- ifelse(up_right_color == up_color1, up_right_color, "")
+        matching[7] <- ifelse(up_left_color == left_color1, up_color1, "")
+        matching[8] <- ifelse(up_left_color == up_color1, left_color1, "")
+        
+        
+        matching <- unique(matching[which(matching != "")])
+        
+        # If there were no matches
+        if (length(matching) == 0){
+          
+          # Assign any random color
+          color_matrix[i,j] <- sample(x = colors,
+                                      size = 1,
+                                      replace = TRUE)
+          
+        } else { # If there WERE matches
+          
+          # Assign any other color than those in matches vector
+          color_matrix[i,j] <- sample(x = colors[-which(colors %in% matching)],
+                                      size = 1,
+                                      replace = TRUE)
+        }
+      }
+    }
+  }  
+  # return the color matrix as a vector
+  return(as.vector(color_matrix))
+}
+```
+
+![](images/07-finally-only-two-touching.png){fig-align="center"}  
+
+There we go! Finally! This looks so great!! Now, I’d like to test some constraints:  
+
+- size - what’s the smallest viable value for size before the outer circuit and inner circuits don’t provide the appropriate probabilities? From previous mistakes, I think it may be somewhere in the range of 12 to 16.  
+    - It’s 13!  
+- number of colors - what’s the smallest viable number of unique colors that can be used before something fails? My intuition tells me 5 or 6, because of my color pair conditionals.  
+    - Everything above 1 color passes! A 2 color grid is just a checker board due to the restrictions.   
+
+Time for bed very soon. Today’s progress was great, but tomorrow I need to wrangle my functions and make sure I know what the final versions of each function are. Before I go, I’m going to list out what I think they are.  
+
+Packages needed:  `ggplot2` and `pracma`  
+
+`get_prob_vector()`  
+```{r}
+get_prob_vector <- function(circuits){
+
+  first10perc <- seq(0, 0.02857143, length.out = round(circuits*.10)+1) # 3
+
+  last90perc_length <- circuits - length(first10perc)
+
+  last10perc_length <- round(last90perc_length * (1/9)) # 2
+
+  middle80perc_length <- last90perc_length - last10perc_length # 15
+
+  middle80perc <- seq(0.02857143, 1, length.out = middle80perc_length+2)[-c(1, middle80perc_length+2)]
+
+  last10perc <- rep(1, last10perc_length)
+
+  prob_vector <- c(first10perc, middle80perc, last10perc)
+
+  return(prob_vector)
+}
+```
+
+`get_prob_matrix()`  
+```{r}
+get_prob_matrix <- function(size, prob_vector){
+
+  # Calculate quad size same way as circuits
+  quad_size <- ifelse(size %% 2 == 0, size/2, (size+1)/2)
+
+  # Create empty matrix for the quad
+  M <- matrix(0, nrow = quad_size, ncol = quad_size)
+
+  # For loop to assign prob_vector to correct cells in quadrant
+  for (i in 1:quad_size){
+
+    M[i, i:quad_size] <- prob_vector[i]
+    M[i:quad_size, i] <- prob_vector[i]
+  }
+
+  # if size is even,
+  if(size %% 2 == 0){
+    # mirror horizontally and column bind
+    M_right <- pracma::fliplr(M)
+    M <- cbind(M, M_right)
+
+    # then mirror vertically and row bind
+    M_down <- pracma::flipud(M)
+    M <- rbind(M, M_down)
+
+  }else{ # if size is odd
+    # mirror all but last col horizontally and col bind
+    M_right <- pracma::fliplr(M[ , 1:(quad_size-1)])
+    M <- cbind(M, M_right)
+
+    # then mirror all but last row vertically and row bind
+    M_down <- pracma::flipud(M[1:(quad_size-1), ])
+    M <- rbind(M, M_down)
+
+  }
+
+  return(M)
+}
+```
+
+`get_color_vector_blobs_ok()` (formerly `generate_color_vector`)  
+```{r}
+get_color_vector_blobs_ok <- function(size, colors) {
+
+  # Create a size^2 vector filled with a random sample of colors from a color list
+  color_vector <- sample(x = colors,
+                         size = size * size,   # "size" is the # of squares on each side
+                         replace = TRUE)
+
+  return(color_vector)
+}
+```
+
+`get_color_vector()` (no more than two of same color touching)  
+```{r}
+get_color_vector <- function(size, colors){
+  
+  # Define an empty size x size matrix
+  color_matrix <- matrix("", nrow = size, ncol = size)
+  
+  # For loop to go row by row
+  for (i in 1:nrow(color_matrix)){
+    
+    # For loop to go column by column
+    for (j in 1:ncol(color_matrix)){
+      
+      # If you're in the first (top left) cell, assign a random color
+      if (i == 1 && j == 1){
+        
+        color_matrix[i,j] <- sample(x = colors,
+                                    size = 1,
+                                    replace = TRUE)
+      
+      # If you're in any other cell than the top left  
+      } else {
+        
+        # Get the colors of the five surrounding cells
+        left_color1 <- ifelse((j-1) > 0, color_matrix[i, j-1], "")
+        left_color2 <- ifelse((j-2) > 0, color_matrix[i, j-2], "")
+        up_color1 <- ifelse((i-1) > 0, color_matrix[i-1, j], "")
+        up_color2 <- ifelse((i-2) > 0, color_matrix[i-2, j], "")
+        up_left_color <- ifelse((j-1) > 0 && (i-1) > 1, color_matrix[i-1, j-1], "")
+        up_right_color <- ifelse((i-1) > 0 && (j+1) < (ncol(color_matrix)+1), 
+                                 color_matrix[i-1, j+1], "")
+        
+        # Put them in a vector called surrounding
+        surrounding <- c(left_color1, 
+                         left_color2,
+                         up_color1,
+                         up_color2,
+                         up_left_color,
+                         up_right_color)
+        
+        # Check to see if any of the relavent cell colors match
+        matching <- vector(mode = "character", length = 8)
+        
+        matching[1] <- ifelse(left_color1 == left_color2, left_color1, "")
+        matching[2] <- ifelse(left_color1 == up_color1, left_color1, "")
+        matching[3] <- ifelse(up_color1 == up_color2, up_color1, "")
+        matching[4] <- ifelse(up_left_color == left_color1, up_left_color, "")
+        matching[5] <- ifelse(up_left_color == up_color1, up_left_color, "")
+        matching[6] <- ifelse(up_right_color == up_color1, up_right_color, "")
+        matching[7] <- ifelse(up_left_color == left_color1, up_color1, "")
+        matching[8] <- ifelse(up_left_color == up_color1, left_color1, "")
+        
+        
+        matching <- unique(matching[which(matching != "")])
+        
+        # If there were no matches
+        if (length(matching) == 0){
+          
+          # Assign any random color
+          color_matrix[i,j] <- sample(x = colors,
+                                      size = 1,
+                                      replace = TRUE)
+          
+        } else { # If there WERE matches
+          
+          # Assign any other color than those in matches vector
+          color_matrix[i,j] <- sample(x = colors[-which(colors %in% matching)],
+                                      size = 1,
+                                      replace = TRUE)
+        }
+      }
+    }
+  }  
+  # return the color matrix as a vector
+  return(as.vector(color_matrix))
+}
+```
+
+Plotting full color grid with no gaps, VI style (is it VI? check.)  
+```{r}
+ggplot(df, aes(x = x, y = y, fill = color)) +
+  geom_tile() +  # Add tiles
+	scale_y_reverse() +
+  scale_fill_identity() +  # Use the colors stored as strings in the color column
+  theme_void() +  # Remove axis labels and background
+  coord_equal()
+```
+
+`get_kelly_III_vector()` (replaces colored tiles with white ones based on probabilities in `df$probs`)  
+```{r}
+get_kelly_III_vector <- function(df, background){
+  
+  # Write a loop that iterates over each row in df
+  for (i in 1:nrow(df)){
+    
+    if (df$probs[i] == 0){
+      df$color[i] <- background
+    } else if (df$probs[i] == 1){
+      df$color[i] <- df$color[i]
+    } else {
+      
+      # If the random is greater than probs, assign background, if not, do nothing
+      # grab a random number between 0 and 1
+      random <- runif(n = 1)
+      
+      if (random > df$probs[i]){
+        df$color[i] <- background
+      }
+    }
+  }
+  
+  return(df)
+  
+}
+```
+
+Printing the Kelly III plot:  
+```{r}
+# Set the size of the desired grid and calculate number of circuits
+size <- 40
+circuits <- ifelse(size %% 2 == 0, size/2, (size+1)/2)
+background <- "#EDEFEE"
+
+# Define the colors
+colors <- c(#"#EDEFEE", # Paper
+  "#1A8BB3", # Teal - no longer teal, just bright blue
+  "#0950AE", # Dark blue
+  "#4DACE5", # Light blue
+  "#126DDB", # Blue
+  "#E48DC4", # Pink
+  "#ABA9E8", # Light purple
+  "#872791", # Purple
+  "#6D1617", # Dark red
+  "#B81634", # Red
+  "#DF3B43", # Red orange
+  "#E35C47", # Orange
+  "#EB8749", # Light orange
+  "#F6E254", # Yellow
+  "#7B442D", # Brown
+  "#000000", # Black
+  "#1A6E7E", # Dark green - no longer dark green, now looks teal
+  "#7CBF7B", # Green
+  "#ADD2B8") # Light green
+
+# End user parameters
+
+# Generate the color vector
+color_vector <- get_color_vector(size, colors)
+
+# Create a data frame for the grid coordinates
+df <- expand.grid(x = 1:size, y = 1:size)
+
+# Add the corresponding color to each grid cell coordinate
+df$color <- color_vector
+
+# Get the probability vector
+prob_vector <- get_prob_vector(circuits)
+
+# Assign probabilities to matrix correctly
+M <- get_prob_matrix(size, prob_vector)
+
+# Apply prob matrix M to df as a vector
+df$probs <- as.vector(M)
+
+df <- get_kelly_III_vector(df, background)
+
+# Try the plot
+kelly_colors_III <-
+  ggplot(df, aes(x = x, y = y, fill = color)) +
+  geom_tile() +  # Add tiles
+  scale_fill_identity() +  # Use the colors stored as strings in the color column
+  theme_void() +  # Remove axis labels and background
+  coord_equal()  # Use equal aspect ratio
+
+# Print the plot
+kelly_colors_III
+```
+
+Next targets:
+
+- organize code  
+- figure out if I want to offer a background option as a toggle, but label it clearly as reproducing a specific piece's style.  
+    - if white is chosen, its piece III and black gets included as a color, no blobs  
+    - if black is chosen, its piece IV, and the colors exclude white no blobs  
+    - also offer chance VII, full color dispersion, no white, includes black as a color, blobs ok  
+- write code for companion paint-by-numbers plot and swatch plot  
+    - need to assign each color a number and ensure that number gets plotted on the grid and on the swatch plot in association with the same colors. If “yellow” is 3 on the paint by numbers plot, it should be 3 on the swatch plot.  
+- see if I can delineate what part of this, if any, could be useful as a blog series part 1. It would be focused on the planning and documenting of my process, not on the code. Not a tutorial, more of a documentary with commentary.  
+
+[**Note from Future Libby: Spoiler alert, you're reading the blog series now. Hilarious that I thought ALL of that so far would be a "part 1" of a blog series 😂 Here we are on part 6 because it's just so much. I'm surprised that I can follow everything still. Thank you, Past Libby, for being such a good comment-user and note-taker 😍 But, I'm guessing no one else will ever read this!**]  
+
+Thanks for hanging out with my, if you're reading this. Here's a link to [the seventh part of these series](), once it exists.  

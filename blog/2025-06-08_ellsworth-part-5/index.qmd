@@ -1,6 +1,6 @@
 ---
 title: "The Ellsworth Project: Part 5"
-description: "Part 5 of a series documenting my learning process as I code a Shiny app that generates random artwork inspired by Ellsworth Kelly's Spectrum Colors by Chance Series"
+description: "Documenting the creation of <a href='https://libbyheeren-ellsworth.share.connect.posit.cloud/'>The Ellsworth App</a>, in which I bathe in color and finally get a solid Piece III plot!"
 date: "2025-06-08"
 image: images/00-cover-image.png
 image-alt: "Part of a simple shiny app showing the user selecting a purple color and part of a plot with purple dots"
@@ -384,4 +384,4 @@ Words cannot express how happy these little color bombs make me. BEDTIME!
 
 [**Note from Future Libby: Past Libby really was exhausted but elated, and I love that for us. I remember these little coding mysteries running nonstop in my brain at that time.**]  
 
-This was a lot of color and a lot of code. If you're up for more (yes, there's more), you can head to [the sixth part in this series](../2025-06-09_ellsworth-part-6/index.qmd) when it exists.  
+This was a lot of color and a lot of code. If you're up for more (yes, there's more), you can head to [the sixth part in this series](../2025-06-09_ellsworth-part-6/index.qmd), and here's [the app in its current form](https://libbyheeren-ellsworth.share.connect.posit.cloud/) if you'd like to play with it!.  

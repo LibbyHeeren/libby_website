@@ -1,6 +1,6 @@
 ---
 title: "The Ellsworth Project: Part 4"
-description: "Part 4 of a series documenting my learning process as I code a Shiny app that generates random artwork inspired by Ellsworth Kelly's Spectrum Colors by Chance Series"
+description: "Documenting the creation of <a href='https://libbyheeren-ellsworth.share.connect.posit.cloud/'>The Ellsworth App</a>, in which I figure out why my probability mapping is wonky in my plots."
 date: "2025-06-07"
 image: images/00-cover-image.png
 image-alt: "A ggplot of a grid with cells in the center colored blue, representing probabilities aproaching 1, and the outer cells fading to white, representing probabilities approaching 0."
@@ -631,4 +631,4 @@ Ok 😌 Now I can go to bed happy. And before midnight! 😴 Next up is trying t
 
 [**Note from Future Libby: Gosh, I love her. Look at that wonder and enthusiasm. This is the best.**]
 
-I don't know why you're still reading this, but if you are, I'll link [the fifth post in the series here](../2025-06-07_ellsworth-part-5/index.qmd).  
+I don't know why you're still reading this, but if you are, I'll link [the fifth post in the series here](../2025-06-07_ellsworth-part-5/index.qmd), and here's [the app in its current form](https://libbyheeren-ellsworth.share.connect.posit.cloud/) if you'd like to play with it!.  

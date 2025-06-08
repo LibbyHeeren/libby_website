@@ -1,6 +1,6 @@
 ---
 title: "The Ellsworth Project: Part 1"
-description: "Part 1 of a series documenting my learning process as I code a Shiny app that generates random artwork inspired by Ellsworth Kelly's Spectrum Colors by Chance Series"
+description: "A series documenting my learning process as I code <a href='https://libbyheeren-ellsworth.share.connect.posit.cloud/'>The Ellsworth App</a>, which generates random artwork inspired by Ellsworth Kelly's Spectrum Colors by Chance Series - featuring loads of hand-written coding."
 date: "2024-03-13"
 image: images/initial-kelly-count.jpg
 image-alt: "Ellsworth Kelly's artwork with writing on it to count things. The art is a grid of white paper with bright colors randomly filling some squares on the grid. There are more color-filled squares in the center than the edges."
@@ -218,4 +218,4 @@ I DID IT! I MADE A THING THAT PROVES I CAN PROBABLY MAKE THE BIGGER THING! I did
 ![My early attempt at recreating piece VII with R](images/my-poc-piece-VII.png)
 :::
 
-It was time to analyze the probabilities of the actual piece I was aiming for: piece III! But it was gonna have to wait until the next day. And so will the next blog post. I'll link the [second post in the series](../2024-04-01_ellsworth-part-2/index.qmd) here when it's ready. Hope you enjoyed my mayhem!  
+It was time to analyze the probabilities of the actual piece I was aiming for: piece III! But it was gonna have to wait until the next day. And so will the next blog post. I'll link the [second post in the series here](../2024-04-01_ellsworth-part-2/index.qmd), and here's [the app in its current form](https://libbyheeren-ellsworth.share.connect.posit.cloud/) if you'd like to play with it!. Hope you enjoyed my mayhem!  

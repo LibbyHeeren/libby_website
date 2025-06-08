@@ -1,6 +1,6 @@
 ---
 title: "The Ellsworth Project: Part 7"
-description: "Part 7 of a series documenting my learning process as I code a Shiny app that generates random artwork inspired by Ellsworth Kelly's Spectrum Colors by Chance Series"
+description: "Documenting the creation of <a href='https://libbyheeren-ellsworth.share.connect.posit.cloud/'>The Ellsworth App</a>, in which I finish the paint-by-numbers plot and the swatch plot."
 date: "2025-06-10"
 image: images/00-cover-image.png
 image-alt: "a plot of a 40 by 40 grid with some squares filled with colors and some not. The unfilled squares have a B in them and the filled squares have numbers in them, one number for each unique color."
@@ -274,4 +274,4 @@ Ok, good enough for me! I'm envisioning this as a second iteration of the app. I
 
 [**Note from Future Libby: Well, this is it. This is the last "old" bit of documentation from last year. I had to step away from this project after the spring of 2024, and I've only now been able to get back to it in June of 2025. It's time!**]
 
-I can't believe I'm saying this, but I guess I'll add an eighth part to this series once I get the first iteration of the app running 😅  
+I can't believe I'm saying this, but I guess I'll add an eighth part to this series to show you my notes on the app code 😅 but here's [the app in its current form](https://libbyheeren-ellsworth.share.connect.posit.cloud/) if you'd like to play with it!

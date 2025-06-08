@@ -25,6 +25,8 @@ This is a messy, experimental, learning-out-loud space. It's also a sharing spac
 
 I welcome conversation that is kind, curious, and courteous.  
 
+✨[**SEE THE ELLSWORTH APP HERE**](https://libbyheeren-ellsworth.share.connect.posit.cloud/)✨
+
 ---
 
 ```{r, include=FALSE}

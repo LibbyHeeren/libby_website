@@ -1,6 +1,6 @@
 ---
 title: "The Ellsworth Project: Part 3"
-description: "Part 3 of a series documenting my learning process as I code a Shiny app that generates random artwork inspired by Ellsworth Kelly's Spectrum Colors by Chance Series"
+description: "Documenting the creation of <a href='https://libbyheeren-ellsworth.share.connect.posit.cloud/'>The Ellsworth App</a>, in which I assign probabilities to a matrix and reswatch colors."
 date: "2025-06-06"
 image: images/00-cover-image.png
 image-alt: "Hand-drawn image of colors sampled from Kelly's artwork with numbers next to them that seem to be counts"
@@ -567,4 +567,4 @@ OK WHAT THE HECK, GGPLOT. I thought I knew what was up. I thought my x and y wer
 
 [**Note from Future Libby: Oh, goodness. This is hard to watch. THINK ABOUT HOW GGPLOT MAKES PLOTS.**]
 
-Hope you've enjoyed the chaos! I'll link [the fourth part in the series here](../2025-06-07_ellsworth-part-4/index.qmd) once it's added.  
+Hope you've enjoyed the chaos! I'll link [the fourth part in the series here](../2025-06-07_ellsworth-part-4/index.qmd), and here's [the app in its current form](https://libbyheeren-ellsworth.share.connect.posit.cloud/) if you'd like to play with it!.  

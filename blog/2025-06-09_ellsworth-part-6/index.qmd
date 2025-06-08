@@ -1,6 +1,6 @@
 ---
 title: "The Ellsworth Project: Part 6"
-description: "Part 6 of a series documenting my learning process as I code a Shiny app that generates random artwork inspired by Ellsworth Kelly's Spectrum Colors by Chance Series"
+description: "Documenting the creation of <a href='https://libbyheeren-ellsworth.share.connect.posit.cloud/'>The Ellsworth App</a>, in which I figure out how to assign colors to the matrix so they don't clump."
 date: "2025-06-09"
 image: images/00-cover-image.png
 image-alt: "A small hand-drawn 4 by 4 matrix grid with some squares colored yellow, pink, green, and blue. Three yellow squares are touching each other, and those three are circled in pink with a note that says 'technically, this could happen, but the outer edge of the final matrix will be changed to the background color anyway.'"
@@ -1145,4 +1145,4 @@ Next targets:
 
 [**Note from Future Libby: Spoiler alert, you're reading the blog series now. Hilarious that I thought ALL of that so far would be a "part 1" of a blog series 😂 Here we are on part 6 because it's just so much. I'm surprised that I can follow everything still. Thank you, Past Libby, for being such a good comment-user and note-taker 😍 But, I'm guessing no one else will ever read this!**]  
 
-Thanks for hanging out with my, if you're reading this. Here's a link to [the seventh part of these series](), once it exists.  
+Thanks for hanging out with my, if you're reading this. Here's a link to [the seventh part of these series](../2025-06-10_ellsworth-part-7/index.qmd), and here's [the app in its current form](https://libbyheeren-ellsworth.share.connect.posit.cloud/) if you'd like to play with it!.  

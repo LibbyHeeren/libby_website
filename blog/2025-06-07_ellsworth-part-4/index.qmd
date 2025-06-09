@@ -631,4 +631,4 @@ Ok 😌 Now I can go to bed happy. And before midnight! 😴 Next up is trying t
 
 [**Note from Future Libby: Gosh, I love her. Look at that wonder and enthusiasm. This is the best.**]
 
-I don't know why you're still reading this, but if you are, I'll link [the fifth post in the series here](../2025-06-07_ellsworth-part-5/index.qmd), and here's [the app in its current form](https://libbyheeren-ellsworth.share.connect.posit.cloud/) if you'd like to play with it!.  
+I don't know why you're still reading this, but if you are, I'll link [the fifth post in the series here](../2025-06-08_ellsworth-part-5/index.qmd), and here's [the app in its current form](https://libbyheeren-ellsworth.share.connect.posit.cloud/) if you'd like to play with it!.  

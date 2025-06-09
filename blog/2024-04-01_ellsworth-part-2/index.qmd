@@ -461,4 +461,4 @@ I remember trying to go to sleep at this point after watching that YouTube video
 
 And then I went to bed hoping that my handwritten code would actually work 🥱   
 
-You can find [the third post in the series here](../2025-06-07_ellsworth-part-3/index.qmd), and here's [the app in its current form](https://libbyheeren-ellsworth.share.connect.posit.cloud/) if you'd like to play with it!.  
+You can find [the third post in the series here](../2025-06-06_ellsworth-part-3/index.qmd), and here's [the app in its current form](https://libbyheeren-ellsworth.share.connect.posit.cloud/) if you'd like to play with it!.  

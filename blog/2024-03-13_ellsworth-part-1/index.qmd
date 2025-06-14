@@ -23,7 +23,7 @@ In this series, I'll be sharing my journey of developing a Shiny app from scratc
 
 I'm super into transparency and busting impostor syndrome, which I prefer to call "unnecessary feelings of inadequacy." You might look at a code project online and think, "Wow, they're so smart, I could never do that," but you're not seeing the hours and hours of hilarious mistakes and all the struggles that went on behind the scenes (behind the screens? hahaha). Which also means we're not gonna start with finished Shiny code. Or any Shiny code at all. We're gonna start where I started: inspiration, notes by hand, and a quick proof of concept.
 
-Developing is messy and fun! There is a lot of trial and error, loads of failure, and a fair bit of confusion. Both my handwritten and coded notes, as you'll see, are not curated or edited, they’re just raw, and that means some stuff is random, doesn’t work, or is left unexplained. And that’s OK! I'll even share the process of my friend reviewing my code later and we can talk about the terror and brilliance of getting code reviews, because I know so many people are afraid of them (I know I am).  
+Developing is messy and fun! There is a lot of trial and error, loads of failure, and a fair bit of confusion. Both my handwritten and coded notes, as you'll see, are not curated or edited, they’re just raw, and that means some stuff is random, doesn’t work, or is left unexplained. And that’s OK!. What follows are my development notes. Basically a journal I kept as I thought about the project and coded. Don't expect it all to make sense - the point is the vulnerability and the mess, not the coherency.  
 
 <br> 
 
@@ -39,11 +39,11 @@ I want to create an app that will generate a piece of artwork akin to [Ellsworth
 
 Isn't it **FUN**?! I am fascinated by Kelly’s exploration of randomness within boundaries and his love of color. The pieces in this series were all created with random chance, constrained by logical boundaries, and they were created totally by hand (it was 1951, he wasn't exactly whipping out Excel). Basically: put a bunch of squares of colored paper in a hat and draw them at random using different rules for the pattern of placement.
 
-Alright! From here on out, I'll use dates to separate days of work. Mostly because that's how my development notes in Notion are sorted. In today's post, I'll just cover two days.
+[**Note from Future Libby**: Alright! From here on out, I'll use dates to separate days of work. Mostly because that's how my development notes in Notion are sorted. In today's post, I'll just cover two days.
 
 ## February 14th 2024
 
-This was the first day I saw Kelly's artwork. It was when Stacey Taylor (aka [The Crooked Hem](https://thecrookedhem.net/about-the-crooked-hem/)) posted on Instagram about the Ellsworth-inspired quilt she was creating. I got the sudden - and *strong* - itch to code something. I thought, "I bet I could create an app that would let users not only generate their own random “pieces” but also give them a grid of letters or numbers that would allow them to create their own quilt (think paint-by-numbers) with whatever colors they wanted." I messaged Stacey to chat about it and she shared some blog posts she had read when doing her own research. I fell down a deep rabbit hole reading about this body of work. I'm pretty sure I didn't sleep well that night just because I had this on my mind.  
+This was the first day I saw Kelly's artwork. It was when Stacey Taylor (aka [The Crooked Hem](https://thecrookedhem.net/about-the-crooked-hem/)) posted on Instagram about [the Ellsworth-inspired quilt she was creating](https://thecrookedhem.substack.com/p/the-quilterly-paintings-of-ellsworth). I got the sudden - and *strong* - itch to code something. I thought, "I bet I could create an app that would let users not only generate their own random “pieces” but also give them a grid of letters or numbers that would allow them to create their own quilt (think paint-by-numbers) with whatever colors they wanted." I messaged Stacey to chat about it and she shared some blog posts she had read when doing [her own research](https://thecrookedhem.substack.com/p/the-ellsworth-kelly-quilt-part-2). I fell down a deep rabbit hole reading about this body of work. I'm pretty sure I didn't sleep well that night just because I had this on my mind.  
 
  
 

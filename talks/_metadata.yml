@@ -8,6 +8,8 @@ execute:
 
 # citation: true
 
+# THIS FOLDER IS LEFTOVER FROM JADEY'S FORK
+
 comments:
     giscus:
       repo: jadeynryan/jadey-website-giscus

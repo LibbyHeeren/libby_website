@@ -1,18 +1,15 @@
 ---
-title: "washi"
-description: "Palette and themes for Washington Soil Health Initiative branding"
+title: "Ellsworth"
+description: "A shiny app that uses probabilities to recreate artwork in the style of Ellsworth Kelly"
 author: 
-  - name: Jadey Ryan
-    affiliation: WSDA
-  - name: Molly McIlquham
-    affiliation: WSU
-  - name: Dani Gelardi
-    affiliation: WSDA
-date: "2023-09-07"
-image: "https://github.com/WA-Department-of-Agriculture/washi/blob/main/man/figures/logo.png?raw=true"
-image-alt: "washi logo"
+  - name: Libby Heeren
+date: "February 2024 - June 2025"
+image: ""
+image-alt: "Ellsworth app artwork"
 categories:
-  - R package
+  - Shiny
+  
+# EVERYTHING BELOW IS LEFT OVER FROM JADEY'S FORK, NEEDS TO BE UPDATED
 ---
 
 <span class="listing-btn-group">
@@ -21,5 +18,5 @@ categories:
 <a href="https://cran.r-project.org/web/packages/washi/index.html" class="btn" role="button">{{< fa brands r-project >}} CRAN</a>
 </span>
 
-Inspired by other branding R packages such as [`glitr`](https://github.com/USAID-OHA-SI/glitr), [`ratlas`](https://github.com/atlas-aai/ratlas), and [`nmfspalette`](https://github.com/nmfs-fish-tools/nmfspalette), `washi` provides color palettes and themes consistent with [Washington Soil Health Initiative](https://washingtonsoilhealthinitiative.com) (WaSHI) branding. This package is to be used only by direct collaborators within WaSHI, though you are welcome to adapt the package to suit your own organization’s branding. ![](https://github.com/WA-Department-of-Agriculture/washi/blob/main/man/figures/logo.png?raw=true){.img-center width=15em fig-alt="washi logo"}
+
 

@@ -1,9 +1,9 @@
 ---
-pagetitle: "Jadey Ryan | 404"
+pagetitle: "Libby Heeren | 404"
 ---
 <br>
 [Uh oh!]{.h1 style="font-size:2em"}
 
-[The page you requested is nowhere to be found.]{.h3}
+[🤚This isn't the page you're looking for.]{.h3}
 
 Try going [home](/) or using the search feature.
